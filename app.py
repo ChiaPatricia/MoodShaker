@@ -32,14 +32,12 @@ def generate_response(prompt):
     instruction = "Please generate a cocktail recipe based on the user's mood description.\n\n"
     prompt = instruction + prompt
 
-    response = client.chat.completions.create(
-        model="gpt-4-0125-preview")
     try:
         response = client.chat.completions.create(
             model="gpt-4-0125-preview", 
             messages=prompt,
             max_tokens=150)
-        return response.choices[0].text.strip()
+        return response.choices[0].message.content
     except Exception as e:
         return str(e)
 
