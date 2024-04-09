@@ -41,7 +41,7 @@ def generate_cocktail(prompt, mood, sweetness, sour, savory, bitter, flavor_asso
         response = client.chat.completions.create(
             model="gpt-4-0125-preview", 
             messages=messages,
-            max_tokens=150)
+            max_tokens=1024)
         return response.choices[0].message.content
     except Exception as e:
         return str(e)
