@@ -28,7 +28,7 @@ def create_assistant_json(uploaded_file, assistant_name,  assistant_message):
     return assistant.id
 
 # Creating the Gradio interface
-with gr.Blocks() as demo:
+with gr.Blocks(css=".gradio-container {background-color: red}") as demo:
     gr.Markdown("## To create an OpenAI Assistant please fill in the following sections. Upload a file to give the Assistant knowledge and a focus on something outside of it's normal training. Then add an assistant name and message. The Assistant message should guide the model into in a role. An example would be, You are a helpful Asssitant who is knowledgable in the field of...")
     gr.Markdown("## After creating the ID head to [OpenAI_Assistant_Chat](https://huggingface.co/spaces/jadend/OpenAI_Assistant_Chat).")
     with gr.Row():
