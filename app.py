@@ -5,10 +5,6 @@ from datetime import datetime
 import openai
 
 
-user_db = { 
-           os.environ["username"]: os.environ["password"],
-          }
-
 # Assistant Creation function
 def create_assistant_json(uploaded_file, assistant_name,  assistant_message):
     client = openai.OpenAI(api_key=os.environ["API_TOKEN"])
@@ -51,6 +47,5 @@ with gr.Blocks() as demo:
 if __name__ == "__main__":
     demo.launch(#enable_queue=False,
         # Creates an auth screen 
-        auth=lambda u, p: user_db.get(u) == p,
         auth_message="Welcome! Enter a Username and Password"
                ).queue()
