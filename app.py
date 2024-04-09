@@ -37,7 +37,7 @@ def generate_response(prompt):
     try:
         response = client.chat.completions.create(
             model="gpt-4-0125-preview", 
-            message=prompt,
+            messages=prompt,
             max_tokens=150)
         return response.choices[0].text.strip()
     except Exception as e:
