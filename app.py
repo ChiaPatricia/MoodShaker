@@ -5,6 +5,10 @@ from datetime import datetime
 import openai
 
 
+user_db = { 
+           os.environ["username"]: os.environ["password"],
+          }
+
 # Assistant Creation function
 def create_assistant_json(uploaded_file, assistant_name,  assistant_message):
     client = openai.OpenAI(api_key=os.environ["API_TOKEN"])
