@@ -28,14 +28,17 @@ def create_assistant_json(uploaded_file, assistant_name,  assistant_message):
     return assistant.id
 
 def generate_response(prompt):
+    client = openai.OpenAI(api_key=os.environ["API_TOKEN"])
     instruction = "Please generate a cocktail recipe based on the user's mood description.\n\n"
     prompt = instruction + prompt
+
+    response = client.chat.completions.create(
+        model="gpt-4-0125-preview")
     try:
-        response = openai.Completion.create(
-            engine="davinci",
-            prompt=prompt,
-            max_tokens=150
-        )
+        response = client.chat.completions.create(
+            model="gpt-4-0125-preview", 
+            message=prompt,
+            max_tokens=150)
         return response.choices[0].text.strip()
     except Exception as e:
         return str(e)
