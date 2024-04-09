@@ -66,7 +66,7 @@ with gr.Blocks(css=".gradio-container {background: url('https://static.vecteezy.
     
     with gr.Row():
         generate_button = gr.Button("Generate Your Cocktail Recipe")
-        output_recipe = gr.Textbox(label="Your Cocktail Recipe", value="", readonly=True)
+        output_recipe = gr.Textbox(label="Your Cocktail Recipe", value="")
     
     generate_button.click(
         fn=generate_cocktail,
