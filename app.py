@@ -100,46 +100,29 @@ with gr.Blocks(css='''
             width: 100%;
         }
         .custom-input {
-            color: rgba(0,0,0,.87);
-            border-bottom-color: rgba(0,0,0,.42);
-            font-size: 1rem;
-            font-weight: 400;
-            letter-spacing: .009375em;
-            text-decoration: inherit;
-            text-transform: inherit;
-            align-self: flex-end;
-            box-sizing: border-box;
-            width: 100%;
-            padding: 20px 16px 6px;
-            transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
-            border: none;
-            border-bottom: 1px solid;
-            border-radius: 4px 4px 0 0;
-            background: rgb(245, 245, 245);
-            height: 56px;
-        }
-        .custom-input:hover {
-            border-bottom-color: rgba(0,0,0,.87);
-            background: #ececec;
-        }
+            background: yellow; /* Or any color you'd like */
+            color: #333; /* Text color */
+            padding: 10px; /* Padding inside the input */
+            border: 2px solid #ddd; /* Border color */
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            transition: all 0.3s ease; /* Smooth transition for interactions */
+        } 
         .custom-input:focus {
             border-color: #F0E68C; /* Highlight color when the input is focused */
             box-shadow: 0 0 8px rgba(240, 230, 140, 0.8); /* Glow effect on focus */
         }
-        
         .custom-checkbox-group {
-            background: white;
+            background: yellow;
             padding: 10px;
             border: 2px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
         .custom-checkbox-group input[type="checkbox"] + label {
             margin-right: 10px; /* Space between checkboxes */
             cursor: pointer; /* Mouse pointer changes to indicate clickable area */
         }
-        
         .custom-checkbox-group input[type="checkbox"]:checked + label {
             color: #FF6347; /* Text color when checkbox is checked */
             font-weight: bold;
