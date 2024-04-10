@@ -112,6 +112,13 @@ with gr.Blocks(css='''
         .gradio-container {
             background: url('https://images.unsplash.com/photo-1514361726087-38371321b5cd?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
         }
+        .centered-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 500px; /* Maximum width of the image */
+            width: 100%;
+        }
         .generate-button {
             background: linear-gradient(to right, #F0E68C, #E0FFFF, #FF6347);
             color: black;
@@ -125,7 +132,6 @@ with gr.Blocks(css='''
             transition: all 0.3s ease;
             outline: none; /* Removes the outline on focus for some browsers */
         }
-        
         .generate-button:hover, .generate-button:active {
             background: linear-gradient(to right, #E0FFFF, #FF6347, #F0E68C);
             /* Combines the glow from each color in the gradient */
@@ -138,7 +144,6 @@ with gr.Blocks(css='''
               0 0 25px rgba(255, 99, 71, 0.7);
             transform: translateY(2px); /* Optional: Slightly push the button down on active */
         }
-        
         .generate-button:active {
             /* You may want to add an extra inset shadow to give a sense of depth when clicked */
             box-shadow: 
@@ -154,10 +159,11 @@ with gr.Blocks(css='''
     ''') as demo:
 
     with gr.Row():
-        gr.HTML('''
-        <h2 style='text-align: center; color: white;'>MoodShaker Cocktail Generator</h2>
-        <p style='text-align: center; color: white;'>Enter your preferences and let AI create a unique cocktail recipe for you!</p>
-        ''')
+        gr.Image(value="MoodShaker_Logo.png", elem_id="centered-image")
+        # gr.HTML('''
+        # <h2 style='text-align: center; color: white;'>MoodShaker Cocktail Generator</h2>
+        # <p style='text-align: center; color: white;'>Enter your preferences and let AI create a unique cocktail recipe for you!</p>
+        # ''')
         
     with gr.Row():
         # mood = gr.HTML('''
