@@ -183,7 +183,7 @@ with gr.Blocks(css='''
         """)
         
     with gr.Row():
-        mood = gr.Textbox(label="Mood", elem_classes["mood-input"])
+        mood = gr.Textbox(label="Mood", elem_classes=["mood-input"])
         flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
         drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"])
         
