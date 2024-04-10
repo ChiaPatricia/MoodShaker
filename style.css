@@ -165,3 +165,9 @@
       0 0 25px rgba(255, 99, 71, 0.7),
       0 0 20px rgba(30, 255, 255, 0.5) inset;
 }
+.generate-button.right-aligned-small {
+    float: right; /* Align the button to the right */
+    padding: 5px 10px; /* Adjust padding to make the button smaller */
+    margin-right: 20px; /* Right margin for spacing */
+    font-size: 14px; /* Smaller font size */
+}
