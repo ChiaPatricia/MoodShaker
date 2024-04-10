@@ -102,14 +102,19 @@ with gr.Blocks(css=css_styles) as demo:
 
     output_recipe = gr.HTML(label="Your Cocktail Recipe")
 
-    play_button = gr.Button("Play Music", visible=False, elem_classes=["generate-button", "right-aligned-small"])  # Initially not visible
+    with gr.Row():
+        play_button = gr.Button("Play Music", visible=False, elem_classes=["generate-button"], scale=4)  # Initially not visible
+        clear_button = gr.Button("Clear", scale=1)
+    
     background_music = gr.Audio(label="Background Music", autoplay=True, visible=False)  # Initially not visible
 
     def on_generate_click(*args):
         recipe, show_play_button = generate_cocktail(*args)
         return recipe, gr.update(visible=show_play_button)
-    
 
+    def reset(mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests):
+        return "", 0, 0, 0, 0, [], [], 10, "", ""
+        
     generate_button.click(
         fn=on_generate_click,
         inputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests],
@@ -118,7 +123,7 @@ with gr.Blocks(css=css_styles) as demo:
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
 
-
+    clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests])
         
 if __name__ == "__main__":
     demo.launch(#enable_queue=False,
