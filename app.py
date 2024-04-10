@@ -42,9 +42,9 @@ def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association,
             model="gpt-4-0125-preview", 
             messages=messages,
             max_tokens=1024)
-        return response.choices[0].message.content
+        return f'<p style="color: white; font-size: 20px;">{response.choices[0].message.content}</p>'
     except Exception as e:
-        return str(e)
+        return f'<p style="color: white; font-size: 20px;">{str(e)}</p>'
 
 # Creating the Gradio interface
 with gr.Blocks(css='''
@@ -54,16 +54,6 @@ with gr.Blocks(css='''
         .gradio-textbox {
             opacity: 0.5; /* Change the opacity of the textbox */
         }
-        .gradio-markdown {
-            color: white; /* Change text color to white */
-            font-size: 30px;
-        }
-        .slider-sweetness::-webkit-slider-thumb { background: #FAD02E; }
-        .slider-sour::-webkit-slider-thumb { background: #4CAF50; }
-        .slider-savory::-webkit-slider-thumb { background: #795548; }
-        .slider-bitter::-webkit-slider-thumb { background: #F44336; }
-        .slider-soberness_level::-webkit-slider-thumb { background: #2196F3; }
-        .output_text { color: white !important; } /* Ensuring output text is white */
     ''') as demo:
     with gr.Row():
         gr.HTML("""
