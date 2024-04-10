@@ -154,7 +154,7 @@ with gr.Blocks(css='''
             outputs=[output_recipe, play_button] 
         )
 
-    play_button.click(fn=play_music, inputs=[], outputs=background_music)
+    play_button.click(fn=play_music, inputs=[], outputs=background_music_component)
 
 
         # sweetness .range-slider {background: #FAD02E;}
