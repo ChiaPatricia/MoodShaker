@@ -107,9 +107,30 @@ with gr.Blocks(css='''
     ''') as demo:
     with gr.Row():
         gr.HTML("""
-        <h2 style='text-align: center; color: white;'>MoodShaker Cocktail Generator</h2>
-        <p style='text-align: center; color: white;'>Enter your preferences and let AI create a unique cocktail recipe for you!</p>
+        <style>
+            body {
+                background-color: #2B2B2B; /* Dark background for elegance */
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Elegant and readable font */
+            }
+            h2, p {
+                text-align: center;
+                color: #D4AF37; /* Gold color for an upscale feel */
+            }
+            h2 {
+                margin-top: 20px;
+                font-size: 28px; /* Larger font size for the heading */
+            }
+            p {
+                font-size: 18px; /* Slightly smaller font size for the paragraph */
+            }
+        </style>
+        <h2>MoodShaker Cocktail Generator</h2>
+        <p>Enter your preferences and let AI create a unique cocktail recipe for you!</p>
         """)
+        # gr.HTML("""
+        # <h2 style='text-align: center; color: white;'>MoodShaker Cocktail Generator</h2>
+        # <p style='text-align: center; color: white;'>Enter your preferences and let AI create a unique cocktail recipe for you!</p>
+        # """)
         
     with gr.Row():
         mood = gr.Textbox(label="Mood")
