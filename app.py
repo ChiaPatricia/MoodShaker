@@ -28,6 +28,31 @@ def create_assistant_json(uploaded_file, assistant_name,  assistant_message):
     
     return assistant.id
 
+def play_music():
+    music_path = "RPReplay_Final1712757356.mp3"
+    return music_path, gr.update(visible=True)
+
+# def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests):
+#     client = openai.OpenAI(api_key=os.environ["API_TOKEN"])
+#     instruction = "Please provide a cocktail recipe given the mood and preference of the user.\n\n"
+#     user_prompt = f"Mood: {mood}\nTaste: Sweetness {sweetness}/10, Sour {sour}/10, Savory {savory}/10, Bitter {bitter}/10\nFlavor Association: {flavor_association}\nDrinking Experience: {drinking_experience}\nLevel of Soberness: {soberness_level}\nAllergies: {allergies}\nAdditional Requests: {additional_requests}\n\nMake sure to avoid all allergic ingredients.\n\n"
+#     output_format = "Please strictly follow this output format:\n\nCocktail Name:[name]\nQuote:[one sentence quote related to the cocktail and the mood description]\nIngredients:[ingredient 1]\n[ingredient 2]\n...\nInstruction:1. [step 1]\n2. [step 2]\n...\nNotes:[notes]"
+#     prompt = instruction + user_prompt + output_format
+
+#     messages=[
+#     {"role": "system", "content": "You are a helpful bartender assistant."},
+#     {"role": "user", "content": prompt}
+#   ]
+#     try:
+#         response = client.chat.completions.create(
+#             model="gpt-4-0125-preview", 
+#             messages=messages,
+#             max_tokens=1024)
+#         name, quote, ingredients, instruction, notes = extract_info(response.choices[0].message.content)
+#         return format_cocktail_output(name, quote, ingredients, instruction, notes), "Play background music"
+#     except Exception as e:
+#         return f'<p style="color: white; font-size: 20px;">{str(e)}</p>'
+    
 def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests):
     client = openai.OpenAI(api_key=os.environ["API_TOKEN"])
     instruction = "Please provide a cocktail recipe given the mood and preference of the user.\n\n"
@@ -45,11 +70,11 @@ def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association,
             messages=messages,
             max_tokens=1024)
         name, quote, ingredients, instruction, notes = extract_info(response.choices[0].message.content)
-        play_button.update(visible=True) #modified
-        background_music_component.update(visible=True)
-        return format_cocktail_output(name, quote, ingredients, instruction, notes, play_button,background_music_component)
+        return format_cocktail_output(name, quote, ingredients, instruction, notes),True
     except Exception as e:
         return f'<p style="color: white; font-size: 20px;">{str(e)}</p>'
+    
+
 
 def extract_info(output_text):
     pattern = r"Cocktail Name:(.*?)Quote:(.*?)Ingredients:(.*?)Instruction:(.*?)Notes:(.*?)$"
@@ -81,9 +106,6 @@ def format_cocktail_output(name, quote, ingredients, instruction, notes):
     </div>
     '''
     return html_output
-    
-def play_music():
-    return 'RPReplay_Final1712757356.mp3'
 
 # Creating the Gradio interface
 with gr.Blocks(css='''
@@ -110,6 +132,7 @@ with gr.Blocks(css='''
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
     ''') as demo:
+
     with gr.Row():
         gr.HTML("""
         <h2 style='text-align: center; color: white;'>MoodShaker Cocktail Generator</h2>
@@ -139,22 +162,32 @@ with gr.Blocks(css='''
     with gr.Row():
         output_recipe = gr.HTML(label="Your Cocktail Recipe")
 
-    play_button = gr.Button("Play Music", visible=False)
-    background_music_component = gr.Audio(label="Background Music", autoplay=True, visible=False)  
+    output_recipe = gr.HTML(label="Your Cocktail Recipe")
 
-    
+
+    #modified 
     # generate_button.click(
     #     fn=generate_cocktail,
     #     inputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests],
-    #     outputs=output_recipe
+    #     outputs=[output_recipe, play_button]
     # )
-    generate_button.click(
-            fn=generate_cocktail,
-            inputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, play_button],
-            outputs=[output_recipe, play_button] 
-        )
 
-    play_button.click(fn=play_music, inputs=[], outputs=background_music_component)
+    play_button = gr.Button("Play Background Music", visible=False)  # Initially not visible
+    background_music = gr.Audio(label="Background Music", autoplay=True, visible=False)  # Initially not visible
+
+    def on_generate_click(*args):
+        recipe, show_play_button = generate_cocktail(*args)
+        return recipe, gr.update(visible=show_play_button)
+    
+
+    generate_button.click(
+        fn=on_generate_click,
+        inputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests],
+        outputs=[output_recipe, play_button]
+    )
+    
+    play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
+
 
 
         # sweetness .range-slider {background: #FAD02E;}
