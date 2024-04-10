@@ -31,27 +31,6 @@ def create_assistant_json(uploaded_file, assistant_name,  assistant_message):
 def play_music():
     music_path = "RPReplay_Final1712757356.mp3"
     return music_path, gr.update(visible=True)
-
-# def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests):
-#     client = openai.OpenAI(api_key=os.environ["API_TOKEN"])
-#     instruction = "Please provide a cocktail recipe given the mood and preference of the user.\n\n"
-#     user_prompt = f"Mood: {mood}\nTaste: Sweetness {sweetness}/10, Sour {sour}/10, Savory {savory}/10, Bitter {bitter}/10\nFlavor Association: {flavor_association}\nDrinking Experience: {drinking_experience}\nLevel of Soberness: {soberness_level}\nAllergies: {allergies}\nAdditional Requests: {additional_requests}\n\nMake sure to avoid all allergic ingredients.\n\n"
-#     output_format = "Please strictly follow this output format:\n\nCocktail Name:[name]\nQuote:[one sentence quote related to the cocktail and the mood description]\nIngredients:[ingredient 1]\n[ingredient 2]\n...\nInstruction:1. [step 1]\n2. [step 2]\n...\nNotes:[notes]"
-#     prompt = instruction + user_prompt + output_format
-
-#     messages=[
-#     {"role": "system", "content": "You are a helpful bartender assistant."},
-#     {"role": "user", "content": prompt}
-#   ]
-#     try:
-#         response = client.chat.completions.create(
-#             model="gpt-4-0125-preview", 
-#             messages=messages,
-#             max_tokens=1024)
-#         name, quote, ingredients, instruction, notes = extract_info(response.choices[0].message.content)
-#         return format_cocktail_output(name, quote, ingredients, instruction, notes), "Play background music"
-#     except Exception as e:
-#         return f'<p style="color: white; font-size: 20px;">{str(e)}</p>'
     
 def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests):
     client = openai.OpenAI(api_key=os.environ["API_TOKEN"])
@@ -161,7 +140,7 @@ with gr.Blocks(css='''
     with gr.Row():
         gr.HTML('''
         <div style="text-align: center;">
-            <img src="https://drive.google.com/file/d/1oUItrdwJbc2x8HVuVztOSV4dDCJqZWZc/view?pli=1" alt="MoodShaker Cocktail Generator">
+            <img src="https://drive.google.com/uc?id=1oUItrdwJbc2x8HVuVztOSV4dDCJqZWZc" alt="MoodShaker Cocktail Generator" class="centered-image">
         </div>
         ''')
         # gr.HTML('''
