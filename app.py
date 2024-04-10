@@ -135,6 +135,9 @@ with gr.Blocks(css='''
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+        .slider-sweetness {
+            background: linear-gradient(to right, rgba(255, 220, 169, 0.8), rgba(250, 171, 120, 0.8));
+        }
         .custom-checkbox-group2 input[type="checkbox"] + label {
             margin-right: 10px; /* Space between checkboxes */
             cursor: pointer; /* Mouse pointer changes to indicate clickable area */
