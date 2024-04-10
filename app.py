@@ -135,6 +135,21 @@ with gr.Blocks(css='''
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+        .custom-input2 {
+            background: white; /* White background */
+            color: #333; /* Text color */
+            padding: 10px; /* Padding inside the input */
+            border: 2px solid #FFDA42; /* Initial border color, change as needed */
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            transition: all 0.3s ease; /* Smooth transition for interactions */
+        }
+        
+        .custom-input2:focus {
+            border-color: #F0E68C; /* Highlight color when the input is focused */
+            box-shadow: 0 0 8px rgba(240, 230, 140, 0.8); /* Glow effect on focus */
+        }
+
         .slider-sweetness {
             background: linear-gradient(to right, rgba(232, 243, 214, 0.8), rgba(252, 249, 190, 0.8));
             padding: 10px;
@@ -253,8 +268,8 @@ with gr.Blocks(css='''
     #     flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
     #     drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"])
     with gr.Row():
-        allergies = gr.Textbox(label="Allergies", scale=2)
-        additional_requests = gr.Textbox(label="Anything else you would like to address", scale=2)
+        allergies = gr.Textbox(label="Allergies", scale=2, elem_classes=["custom-input2"])
+        additional_requests = gr.Textbox(label="Anything else you would like to address", scale=2, elem_classes=["custom-input2"])
         generate_button = gr.Button("Generate Your Cocktail Recipe", scale=1, elem_classes=["generate-button"])
 
     with gr.Row():
