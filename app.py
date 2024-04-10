@@ -139,7 +139,7 @@ with gr.Blocks(css='''
             background: white; /* White background */
             color: #333; /* Text color */
             padding: 10px; /* Padding inside the input */
-            border: 10px solid #FFDA42; /* Initial border color, change as needed */
+            border: 20px solid #FFDA42; /* Initial border color, change as needed */
             border-color: #FFDA42
             border-radius: 5px; /* Rounded corners */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -147,7 +147,7 @@ with gr.Blocks(css='''
         }
         
         .custom-input2:focus {
-            border-color: #F0E68C; /* Highlight color when the input is focused */
+            border-color: #FFDA42; /* Highlight color when the input is focused */
             box-shadow: 0 0 8px rgba(240, 230, 140, 0.8); /* Glow effect on focus */
         }
 
