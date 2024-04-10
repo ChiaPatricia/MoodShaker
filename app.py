@@ -113,103 +113,28 @@ with gr.Blocks(css='''
             background: url('https://images.unsplash.com/photo-1514361726087-38371321b5cd?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
         }
         .generate-button {
-          background: linear-gradient(to right, #F0E68C, #E0FFFF, #FF6347);
-          color: black;
-          padding: 10px 20px;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          font-weight: bold;
-          text-transform: uppercase;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          transition: all 0.3s ease;
-          position: relative; /* add this */
-          overflow: hidden; /* add this */
-        }
-        
-        .generate-button:before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(to right, #F0E68C, #E0FFFF, #FF6347);
-          transform: scaleX(0);
-          transform-origin: right;
-          transition: transform 0.3s ease;
-          z-index: -1; /* add this */
+            background: linear-gradient(to right, #F0E68C, #E0FFFF, #FF6347);
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            outline: none; /* Add this to remove the outline on focus for some browsers */
         }
         
         .generate-button:hover {
-          background: linear-gradient(to right, #E0FFFF, #FF6347, #F0E68C);
-          box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-        
-        .generate-button:hover:before {
-          transform: scaleX(1);
+            background: linear-gradient(to right, #E0FFFF, #FF6347, #F0E68C);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
         
         .generate-button:active {
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        .generate-button:active:before {
-          transform: scaleX(0.9);
-        }
-        .mood-input {
-            position: relative;
-            font-size: 1.5em;
-            background: linear-gradient(21deg, #10abff, #1beabd);
-            padding: 3px;
-            display: inline-block;
-            border-radius: 9999em;
-            margin: 50px; /* Added to match your example */
-        }
-        .mood-input input {
-            position: relative;
-            display: inherit;
-            border-radius: inherit;
-            margin: 0;
-            border: none;
-            outline: none;
-            padding: 0 .325em;
-            z-index: 1;
-            font-family: inherit;
-            line-height: inherit;
-            color: #2e3750;
-            min-width: 12em; /* Adjusted to ensure consistency */
-        }
-        .mood-input span {
-            transform: scale(.993, .94);
-            transition: transform .5s, opacity .25s;
-            opacity: 0;
-            position: absolute;
-            z-index: 0;
-            margin: 4px;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: inherit;
-            pointer-events: none;
-            box-shadow: inset 0 0 0 3px #fff, 0 0 0 4px #fff, 3px -3px 30px #1beabd, -3px 3px 30px #10abff;
-        }
-        .mood-input input:focus + span {
-            opacity: 1;
-            transform: scale(1);
-        }
-        body {
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            line-height: 1.5;
-        }
-        ::placeholder {
-            color: #cbd0d5;
+            box-shadow: 0 0 15px rgba(30, 255, 255, 0.5), 
+                        0 0 20px rgba(30, 255, 255, 0.5) inset; /* Creates the glowing effect */
+            transform: translateY(2px); /* Optional: Slightly push the button down */
         }
     ''') as demo:
 
@@ -220,13 +145,13 @@ with gr.Blocks(css='''
         ''')
         
     with gr.Row():
-        mood = gr.HTML('''
-        <div class="mood-input">
-          <input type="text" class="gradio-textbox" label="Mood">
-          <span></span>
-        </div>
-        ''')
-        # mood = gr.Textbox(label="Mood", elem_classes=["mood-input"])
+        # mood = gr.HTML('''
+        # <div class="mood-input">
+        #   <input type="text" class="gradio-textbox" label="Mood">
+        #   <span></span>
+        # </div>
+        # ''')
+        mood = gr.Textbox(label="Mood", elem_classes=["mood-input"])
         flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
         drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"])
         
@@ -300,22 +225,6 @@ with gr.Blocks(css='''
 #     )
 
 
-# .generate-button {
-#             background: linear-gradient(to right, #F0E68C, #E0FFFF, #FF6347);
-#             color: black;
-#             padding: 10px 20px;
-#             border: none;
-#             border-radius: 5px;
-#             cursor: pointer;
-#             font-weight: bold;
-#             text-transform: uppercase;
-#             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-#             transition: all 0.3s ease;
-#         }
-#         .generate-button:hover {
-#             background: linear-gradient(to right, #E0FFFF, #FF6347, #F0E68C);
-#             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-#         }
         
 if __name__ == "__main__":
     demo.launch(#enable_queue=False,
