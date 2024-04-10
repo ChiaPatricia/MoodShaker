@@ -16,7 +16,7 @@ def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association,
     """Generates a cocktail recipe using OpenAI's GPT-4 based on user input."""
     client = openai.OpenAI(api_key=os.environ["API_TOKEN"])
     instruction = "Please provide a cocktail recipe given the mood and preference of the user.\n\n"
-    user_prompt = f"Mood: {mood}\nTaste: Sweetness {sweetness}/10, Sour {sour}/10, Savory {savory}/10, Bitter {bitter}/10\nFlavor Association: {flavor_association}\nDrinking Experience: {drinking_experience}\nLevel of Soberness: {soberness_level}\nAllergies: {allergies}\nAdditional Requests: {additional_requests}\n\nMake sure to avoid all allergic ingredients.\n\n"
+    user_prompt = f"Mood: {mood}\nTaste: Sweetness {sweetness}/10, Sour {sour}/10, Savory {savory}/10, Bitter {bitter}/10\nFlavor: {flavor_association}\nDrinking Experience: {drinking_experience}\nLevel of Soberness: {soberness_level}\nAllergies: {allergies}\nAdditional Requests: {additional_requests}\n\nMake sure to avoid all allergic ingredients.\n\n"
     output_format = "Please strictly follow this output format:\n\nCocktail Name:[name]\nQuote:[one sentence quote related to the cocktail and the mood description]\nIngredients:[ingredient 1]\n[ingredient 2]\n...\nInstruction:1. [step 1]\n2. [step 2]\n...\nNotes:[notes]"
     prompt = instruction + user_prompt + output_format
 
@@ -82,7 +82,7 @@ with gr.Blocks(css=css_styles) as demo:
         
     with gr.Row():
         mood = gr.Textbox(label="How are you feeling today?", elem_classes=["custom-input"])
-        flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"], elem_classes=["custom-checkbox-group1"])
+        flavor_association = gr.CheckboxGroup(label="Flavor", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"], elem_classes=["custom-checkbox-group1"])
         drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"], elem_classes=["custom-checkbox-group2"])
         
     with gr.Row():
@@ -102,7 +102,7 @@ with gr.Blocks(css=css_styles) as demo:
 
     output_recipe = gr.HTML(label="Your Cocktail Recipe")
 
-    play_button = gr.Button("Play Background Music", visible=False)  # Initially not visible
+    play_button = gr.Button("Play Background Music", visible=False, elem_classes=["generate-button"])  # Initially not visible
     background_music = gr.Audio(label="Background Music", autoplay=True, visible=False)  # Initially not visible
 
     def on_generate_click(*args):
