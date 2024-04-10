@@ -75,11 +75,11 @@ with gr.Blocks(css='''
         mood = gr.Textbox(label="Mood")
         
     with gr.Row():
-        sweetness = gr.Slider(label="Sweetness", minimum=0, maximum=10, element_id="slider-sweetness")
-        sour = gr.Slider(label="Sour", minimum=0, maximum=10, element_id="slider-sour")
-        savory = gr.Slider(label="Savory", minimum=0, maximum=10, element_id="slider-savory")
-        bitter = gr.Slider(label="Bitter", minimum=0, maximum=10, element_id="slider-bitter")
-        soberness_level = gr.Slider(label="Level of Soberness", minimum=0, maximum=10, element_id="slider-soberness_level")
+        sweetness = gr.Slider(label="Sweetness", minimum=0, maximum=10, elem_id="slider-sweetness")
+        sour = gr.Slider(label="Sour", minimum=0, maximum=10, elem_id="slider-sour")
+        savory = gr.Slider(label="Savory", minimum=0, maximum=10, elem_id="slider-savory")
+        bitter = gr.Slider(label="Bitter", minimum=0, maximum=10, elem_id="slider-bitter")
+        soberness_level = gr.Slider(label="Level of Soberness", minimum=0, maximum=10, elem_id="slider-soberness_level")
 
     with gr.Row():
         flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
