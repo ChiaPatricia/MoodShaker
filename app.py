@@ -173,6 +173,7 @@ with gr.Blocks(css='''
           border: none;
           outline: none;
           padding: 0 .325em;
+          width: 500px;
           z-index: 1;
         }
         .mood-input input:focus + span {
@@ -211,10 +212,10 @@ with gr.Blocks(css='''
           <input type="text" class="gradio-textbox" label="Mood">
           <span></span>
         </div>
-        ''', scale=1)
+        ''')
         # mood = gr.Textbox(label="Mood", elem_classes=["mood-input"])
-        flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"], scale=1)
-        drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"], scale=1)
+        flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
+        drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"])
         
     with gr.Row():
         sweetness = gr.Slider(label="Sweetness", minimum=0, maximum=10, elem_id="slider-sweetness")
