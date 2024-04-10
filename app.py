@@ -43,9 +43,38 @@ def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association,
             model="gpt-4-0125-preview", 
             messages=messages,
             max_tokens=1024)
-        return f'<p style="color: white; font-size: 20px;">{response.choices[0].message.content}</p>'
+        name, quote, ingredients, instruction, notes = extract_info(response.choices[0].message.content)
+        return format_cocktail_output(name, quote, ingredients, instruction, notes)
     except Exception as e:
         return f'<p style="color: white; font-size: 20px;">{str(e)}</p>'
+
+def extract_info(output_text):
+    pattern = r"Cocktail Name:(.*?)\nQuote:(.*?)\nIngredients:(.*?)\nInstruction:(.*?)\nNotes:(.*?)$"
+    match = re.search(pattern, output_text, re.DOTALL)
+    if match:
+        name = match.group(1).strip()
+        quote = match.group(2).strip()
+        ingredients = match.group(3).strip()
+        instruction = match.group(4).strip()
+        notes = match.group(5).strip()
+        return name, quote, ingredients, instruction, notes
+    else:
+        return None
+        
+def format_cocktail_output(name, quote, ingredients, instruction, notes):
+    # Construct the HTML output
+    html_output = f'''
+    <div style="text-align: center; font-family: 'fantasy'; color: #fff;">
+        <h1 style="font-size: 24px;">{name}</h1>
+        <p style="font-size: 18px; margin-top: -10px; font-style: italic;">"{quote}"</p>
+        <p style="font-size: 16px;">
+            <strong>Ingredients:</strong> {ingredients}<br>
+            <strong>Instruction:</strong> {instruction}<br>
+            <strong>Notes:</strong> {notes}<br>
+        </p>
+    </div>
+    '''
+    return html_output
 
 # Creating the Gradio interface
 with gr.Blocks(css='''
@@ -83,7 +112,7 @@ with gr.Blocks(css='''
         generate_button = gr.Button("Generate Your Cocktail Recipe")
 
     with gr.Row():
-        output_recipe = gr.Markdown(label="Your Cocktail Recipe")
+        output_recipe = gr.HTML(label="Your Cocktail Recipe")
     
     generate_button.click(
         fn=generate_cocktail,
