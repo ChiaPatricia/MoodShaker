@@ -131,6 +131,49 @@ with gr.Blocks(css='''
             background: linear-gradient(to right, #E0FFFF, #FF6347, #F0E68C);
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
+        .mood-input {
+          background: linear-gradient(21deg, #10abff, #1beabd);
+          padding: 3px;
+          display: inline-block;
+          border-radius: 9999em;
+          position: relative;
+          font-size: 1.5em;
+        }
+        
+        .mood-input input {
+          position: relative;
+          display: inherit;
+          border-radius: inherit;
+          margin: 0;
+          border: none;
+          outline: none;
+          padding: 0 .325em;
+          z-index: 1;
+        }
+        
+        .mood-input input:focus + span {
+          opacity: 1;
+          transform: scale(1);
+        }
+        
+        .mood-input span {
+          transform: scale(.993, .94);
+          transition: transform .5s, opacity .25s;
+          opacity: 0;
+          position: absolute;
+          z-index: 0;
+          margin: 4px;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: inherit;
+          pointer-events: none;
+          box-shadow: inset 0 0 0 3px #fff,
+            0 0 0 4px #fff,
+            3px -3px 30px #1beabd,
+            -3px 3px 30px #10abff;
+        }
     ''') as demo:
 
     with gr.Row():
@@ -140,7 +183,7 @@ with gr.Blocks(css='''
         """)
         
     with gr.Row():
-        mood = gr.Textbox(label="Mood")
+        mood = gr.Textbox(label="Mood", elem_classes["mood-input"])
         flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
         drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"])
         
