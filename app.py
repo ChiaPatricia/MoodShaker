@@ -55,8 +55,8 @@ def extract_info(output_text):
     if match:
         name = match.group(1)
         quote = match.group(2)
-        ingredients = match.group(3)
-        instruction = match.group(4)
+        ingredients = match.group(3).replace('\n', '<br>')
+        instruction = match.group(4).replace('\n', '<br>')
         notes = match.group(5)
         return name, quote, ingredients, instruction, notes
     else:
@@ -65,10 +65,10 @@ def extract_info(output_text):
 def format_cocktail_output(name, quote, ingredients, instruction, notes):
     # Construct the HTML output
     html_output = f'''
-    <div style="text-align: center; font-family: 'monospace'; color: #FFFFFF;">
-        <h1 style="font-size: 40px; color: white;">{name}</h1>
-        <p style="font-size: 30px; margin-top: -10px; font-style: italic; color: white;">{quote}</p>
-        <p style="font-size: 18px; color: white;">
+    <div style="text-align: center; font-family: 'American Typewriter', serif; color: white;">
+        <h1 style="font-size: 48px; color: white;">{name}</h1>
+        <p style="font-size: 36px; margin-top: -15px; font-style: italic; color: white;">{quote}</p>
+        <p style="font-size: 20px; color: white;">
             <strong>Ingredients:</strong><br>
             {ingredients}<br>
             <strong>Instruction:</strong><br>
@@ -97,6 +97,8 @@ with gr.Blocks(css='''
         
     with gr.Row():
         mood = gr.Textbox(label="Mood")
+        flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
+        drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"])
         
     with gr.Row():
         sweetness = gr.Slider(label="Sweetness", minimum=0, maximum=10, elem_id="slider-sweetness")
@@ -105,9 +107,9 @@ with gr.Blocks(css='''
         bitter = gr.Slider(label="Bitter", minimum=0, maximum=10, elem_id="slider-bitter")
         soberness_level = gr.Slider(label="Level of Soberness", minimum=0, maximum=10, elem_id="slider-soberness_level")
 
-    with gr.Row():
-        flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
-        drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"])
+    # with gr.Row():
+    #     flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
+    #     drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"])
     with gr.Row():
         allergies = gr.Textbox(label="Allergies")
         additional_requests = gr.Textbox(label="Anything else you would like to address")
