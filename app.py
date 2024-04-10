@@ -100,7 +100,7 @@ with gr.Blocks(css='''
             width: 100%;
         }
         .custom-input {
-            background: linear-gradient(to right, #E0FFFF, #E0A872, #FC6CA5); /* Or any color you'd like */
+            background: linear-gradient(to right, #E8F3D6, #FCF9BE); /* Or any color you'd like */
             opacity: 0.8
             color: #333; /* Text color */
             padding: 10px; /* Padding inside the input */
@@ -113,18 +113,33 @@ with gr.Blocks(css='''
             border-color: #F0E68C; /* Highlight color when the input is focused */
             box-shadow: 0 0 8px rgba(240, 230, 140, 0.8); /* Glow effect on focus */
         }
-        .custom-checkbox-group {
-            background: yellow;
+        .custom-checkbox-group1 {
+            background: linear-gradient(to right, #FCF9BE, #FFDCA9);
             padding: 10px;
             border: 2px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .custom-checkbox-group input[type="checkbox"] + label {
+        .custom-checkbox-group1 input[type="checkbox"] + label {
             margin-right: 10px; /* Space between checkboxes */
             cursor: pointer; /* Mouse pointer changes to indicate clickable area */
         }
-        .custom-checkbox-group input[type="checkbox"]:checked + label {
+        .custom-checkbox-group1 input[type="checkbox"]:checked + label {
+            color: #FF6347; /* Text color when checkbox is checked */
+            font-weight: bold;
+        }
+        .custom-checkbox-group2 {
+            background: linear-gradient(to right, #FFDCA9, #FAAB78);
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .custom-checkbox-group2 input[type="checkbox"] + label {
+            margin-right: 10px; /* Space between checkboxes */
+            cursor: pointer; /* Mouse pointer changes to indicate clickable area */
+        }
+        .custom-checkbox-group2 input[type="checkbox"]:checked + label {
             color: #FF6347; /* Text color when checkbox is checked */
             font-weight: bold;
         }
@@ -186,8 +201,8 @@ with gr.Blocks(css='''
         # </div>
         # ''')
         mood = gr.Textbox(label="How are you feeling today?", elem_classes=["custom-input"])
-        flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"], elem_classes=["custom-checkbox-group"])
-        drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"], elem_classes=["custom-checkbox-group"])
+        flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"], elem_classes=["custom-checkbox-group1"])
+        drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"], elem_classes=["custom-checkbox-group2"])
         
     with gr.Row():
         sweetness = gr.Slider(label="Sweetness", minimum=0, maximum=10, elem_id="slider-sweetness")
