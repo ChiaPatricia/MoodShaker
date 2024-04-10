@@ -1,0 +1,167 @@
+.gradio-container {
+    background: url('https://images.unsplash.com/photo-1514361726087-38371321b5cd?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+}
+.centered-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -20px;
+    max-width: 500px; /* Maximum width of the image */
+    width: 100%;
+}
+.custom-input {
+    background: linear-gradient(to right, rgba(232, 243, 214, 0.8), rgba(252, 249, 190, 0.8)); /* Or any color you'd like */
+    opacity: 0.8
+    color: #333; /* Text color */
+    padding: 10px; /* Padding inside the input */
+    border: 2px solid #ddd; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition for interactions */
+} 
+.custom-input:focus {
+    border-color: #F0E68C; /* Highlight color when the input is focused */
+    box-shadow: 0 0 8px rgba(240, 230, 140, 0.8); /* Glow effect on focus */
+}
+.custom-checkbox-group1 {
+    background: linear-gradient(to right, rgba(252, 249, 190, 0.8), rgba(255, 220, 169, 0.8));
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.custom-checkbox-group1 input[type="checkbox"] + label {
+    margin-right: 10px; /* Space between checkboxes */
+    cursor: pointer; /* Mouse pointer changes to indicate clickable area */
+}
+.custom-checkbox-group1 input[type="checkbox"]:checked + label {
+    color: #FF6347; /* Text color when checkbox is checked */
+    font-weight: bold;
+}
+.custom-checkbox-group2 {
+    background: linear-gradient(to right, rgba(255, 220, 169, 0.8), rgba(250, 171, 120, 0.8));
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.custom-input1 {
+    background: linear-gradient(to right, rgba(232, 243, 214, 0.8), rgba(255, 220, 169, 0.8));
+    color: #333; /* Text color */
+    padding: 10px; /* Padding inside the input */
+    border: 20px solid #FFDA42; /* Initial border color, change as needed */
+    border-color: #FFDA42
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition for interactions */
+}
+.custom-input2 {
+    background: linear-gradient(to right, rgba(255, 220, 169, 0.8), rgba(250, 171, 120, 0.8));
+    color: #333; /* Text color */
+    padding: 10px; /* Padding inside the input */
+    border: 20px solid #FFDA42; /* Initial border color, change as needed */
+    border-color: #FFDA42
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition for interactions */
+}
+
+.custom-input2:focus {
+    border-color: #FFDA42; /* Highlight color when the input is focused */
+    box-shadow: 0 0 8px rgba(240, 230, 140, 0.8); /* Glow effect on focus */
+}
+
+.slider-sweetness {
+    background: linear-gradient(to right, rgba(232, 243, 214, 0.8), rgba(252, 249, 190, 0.8));
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.slider-sweetness::-webkit-slider-runnable-track {
+    background: rgba(200, 152, 152, 0.8);
+}
+.slider-sour {
+    background: linear-gradient(to right, rgba(252, 249, 190, 0.8), rgba(251, 230, 180, 0.8));
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.slider-sour::-webkit-slider-runnable-track {
+    background: rgba(200, 152, 152, 0.8);
+}
+.slider-savory {
+    background: linear-gradient(to right,rgba(251, 230, 180, 0.8), rgba(255, 220, 169, 0.8));
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.slider-savory::-webkit-slider-runnable-track {
+    background: rgba(200, 152, 152, 0.8);
+}
+.slider-bitter {
+    background: linear-gradient(to right,rgba(255, 220, 169, 0.8), rgba(252, 200, 135, 0.8));
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.slider-bitter::-webkit-slider-runnable-track {
+    background: rgba(200, 152, 152, 0.8);
+}
+.slider-soberness_level {
+    background: linear-gradient(to right, rgba(252, 200, 135, 0.8), rgba(250, 171, 120, 0.8));
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.slider-soberness_level::-webkit-slider-runnable-track {
+    background: rgba(200, 152, 152, 0.8);
+}
+.custom-checkbox-group2 input[type="checkbox"] + label {
+    margin-right: 10px; /* Space between checkboxes */
+    cursor: pointer; /* Mouse pointer changes to indicate clickable area */
+}
+.custom-checkbox-group2 input[type="checkbox"]:checked + label {
+    color: #FF6347; /* Text color when checkbox is checked */
+    font-weight: bold;
+}
+.generate-button {
+    background: linear-gradient(to right, #F0E68C, #E0FFFF, #FF6347);
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    outline: none; /* Removes the outline on focus for some browsers */
+}
+.generate-button:hover, .generate-button:active {
+    background: linear-gradient(to right, #E0FFFF, #FF6347, #F0E68C);
+    /* Combines the glow from each color in the gradient */
+    box-shadow: 
+      0 0 15px rgba(240, 230, 140, 0.7), 
+      0 0 25px rgba(240, 230, 140, 0.7),
+      0 0 15px rgba(224, 255, 255, 0.7),
+      0 0 25px rgba(224, 255, 255, 0.7),
+      0 0 15px rgba(255, 99, 71, 0.7),
+      0 0 25px rgba(255, 99, 71, 0.7);
+    transform: translateY(2px); /* Optional: Slightly push the button down on active */
+}
+.generate-button:active {
+    /* You may want to add an extra inset shadow to give a sense of depth when clicked */
+    box-shadow: 
+      0 0 15px rgba(240, 230, 140, 0.7), 
+      0 0 25px rgba(240, 230, 140, 0.7),
+      0 0 15px rgba(224, 255, 255, 0.7),
+      0 0 25px rgba(224, 255, 255, 0.7),
+      0 0 15px rgba(255, 99, 71, 0.7),
+      0 0 25px rgba(255, 99, 71, 0.7),
+      0 0 20px rgba(30, 255, 255, 0.5) inset;
+}
