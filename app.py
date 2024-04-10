@@ -100,7 +100,8 @@ with gr.Blocks(css='''
             width: 100%;
         }
         .custom-input {
-            background: yellow; /* Or any color you'd like */
+            background: linear-gradient(to right, #E0FFFF, #E0A872, #FC6CA5); /* Or any color you'd like */
+            opacity: 0.8
             color: #333; /* Text color */
             padding: 10px; /* Padding inside the input */
             border: 2px solid #ddd; /* Border color */
