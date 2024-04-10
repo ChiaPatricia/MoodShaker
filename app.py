@@ -56,27 +56,38 @@ with gr.Blocks(css='''
         }
         .gradio-markdown {
             color: white; /* Change text color to white */
-            font-size: 18px;
+            font-size: 30px;
         }
+        .slider-sweetness::-webkit-slider-thumb { background: #FAD02E; }
+        .slider-sour::-webkit-slider-thumb { background: #4CAF50; }
+        .slider-savory::-webkit-slider-thumb { background: #795548; }
+        .slider-bitter::-webkit-slider-thumb { background: #F44336; }
+        .slider-soberness_level::-webkit-slider-thumb { background: #2196F3; }
+        .output_text { color: white !important; } /* Ensuring output text is white */
     ''') as demo:
     with gr.Row():
         gr.HTML("""
         <h2 style='text-align: center; color: white;'>MoodShaker Cocktail Generator</h2>
         <p style='text-align: center; color: white;'>Enter your preferences and let AI create a unique cocktail recipe for you!</p>
         """)
-    
-    with gr.Column(scale=1):
+        
+    with gr.Row():
         mood = gr.Textbox(label="Mood")
-        sweetness = gr.Slider(label="Sweetness", minimum=0, maximum=10)
-        sour = gr.Slider(label="Sour", minimum=0, maximum=10)
-        savory = gr.Slider(label="Savory", minimum=0, maximum=10)
-        bitter = gr.Slider(label="Bitter", minimum=0, maximum=10)
+        
+    with gr.Row():
+        sweetness = gr.Slider(label="Sweetness", minimum=0, maximum=10, element_id="slider-sweetness")
+        sour = gr.Slider(label="Sour", minimum=0, maximum=10, element_id="slider-sour")
+        savory = gr.Slider(label="Savory", minimum=0, maximum=10, element_id="slider-savory")
+        bitter = gr.Slider(label="Bitter", minimum=0, maximum=10, element_id="slider-bitter")
+        soberness_level = gr.Slider(label="Level of Soberness", minimum=0, maximum=10, element_id="slider-soberness_level")
+
+    with gr.Row():
         flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
         drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"])
-        soberness_level = gr.Slider(label="Level of Soberness", minimum=0, maximum=10)
+    with gr.Row():
         allergies = gr.Textbox(label="Allergies")
         additional_requests = gr.Textbox(label="Anything else you would like to address")
-    
+        
     with gr.Row():
         generate_button = gr.Button("Generate Your Cocktail Recipe")
 
