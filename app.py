@@ -54,6 +54,10 @@ with gr.Blocks(css='''
         .gradio-textbox {
             opacity: 0.5; /* Change the opacity of the textbox */
         }
+        .gradio-markdown {
+            color: white; /* Change text color to white */
+            font-size: 18px;
+        }
     ''') as demo:
     with gr.Row():
         gr.HTML("""
@@ -75,6 +79,8 @@ with gr.Blocks(css='''
     
     with gr.Row():
         generate_button = gr.Button("Generate Your Cocktail Recipe")
+
+    with gr.Row():
         output_recipe = gr.Markdown(label="Your Cocktail Recipe")
     
     generate_button.click(
