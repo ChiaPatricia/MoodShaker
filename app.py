@@ -112,7 +112,7 @@ with gr.Blocks(css=css_styles) as demo:
         recipe, show_play_button = generate_cocktail(*args)
         return recipe, gr.update(visible=show_play_button)
 
-    def reset(mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests):
+    def reset():
         return "", 0, 0, 0, 0, [], [], 10, "", ""
         
     generate_button.click(
