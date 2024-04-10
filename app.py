@@ -99,6 +99,38 @@ with gr.Blocks(css='''
             max-width: 500px; /* Maximum width of the image */
             width: 100%;
         }
+        .custom-input {
+          background: white; /* Or any color you'd like */
+          color: #333; /* Text color */
+          padding: 10px; /* Padding inside the input */
+          border: 2px solid #ddd; /* Border color */
+          border-radius: 5px; /* Rounded corners */
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+          transition: all 0.3s ease; /* Smooth transition for interactions */
+        }
+        
+        .custom-input:focus {
+          border-color: #F0E68C; /* Highlight color when the input is focused */
+          box-shadow: 0 0 8px rgba(240, 230, 140, 0.8); /* Glow effect on focus */
+        }
+        
+        .custom-checkbox-group {
+          background: white;
+          padding: 10px;
+          border: 2px solid #ddd;
+          border-radius: 5px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .custom-checkbox-group input[type="checkbox"] + label {
+          margin-right: 10px; /* Space between checkboxes */
+          cursor: pointer; /* Mouse pointer changes to indicate clickable area */
+        }
+        
+        .custom-checkbox-group input[type="checkbox"]:checked + label {
+          color: #FF6347; /* Text color when checkbox is checked */
+          font-weight: bold;
+        }
         .generate-button {
             background: linear-gradient(to right, #F0E68C, #E0FFFF, #FF6347);
             color: black;
@@ -156,9 +188,9 @@ with gr.Blocks(css='''
         #   <span></span>
         # </div>
         # ''')
-        mood = gr.Textbox(label="How are you feeling today?", elem_classes=["mood-input"])
-        flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
-        drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"])
+        mood = gr.Textbox(label="How are you feeling today?", elem_classes=["custom-input"])
+        flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"], elem_classes=["custom-checkbox-group"])
+        drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"], elem_classes=["custom-checkbox-group"])
         
     with gr.Row():
         sweetness = gr.Slider(label="Sweetness", minimum=0, maximum=10, elem_id="slider-sweetness")
