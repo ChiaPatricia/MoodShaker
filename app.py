@@ -112,24 +112,50 @@ with gr.Blocks(css='''
         .gradio-container {
             background: url('https://images.unsplash.com/photo-1514361726087-38371321b5cd?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
         }
-        .gradio-textbox {
-            opacity: 0.5; /* Change the opacity of the textbox */
-        }
         .generate-button {
-            background: linear-gradient(to right, #F0E68C, #E0FFFF, #FF6347);
-            color: black;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+          background: linear-gradient(to right, #F0E68C, #E0FFFF, #FF6347);
+          color: black;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-weight: bold;
+          text-transform: uppercase;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease;
+          position: relative; /* add this */
+          overflow: hidden; /* add this */
         }
+        
+        .generate-button:before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(to right, #F0E68C, #E0FFFF, #FF6347);
+          transform: scaleX(0);
+          transform-origin: right;
+          transition: transform 0.3s ease;
+          z-index: -1; /* add this */
+        }
+        
         .generate-button:hover {
-            background: linear-gradient(to right, #E0FFFF, #FF6347, #F0E68C);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+          background: linear-gradient(to right, #E0FFFF, #FF6347, #F0E68C);
+          box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .generate-button:hover:before {
+          transform: scaleX(1);
+        }
+        
+        .generate-button:active {
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .generate-button:active:before {
+          transform: scaleX(0.9);
         }
         .mood-input {
           background: linear-gradient(21deg, #10abff, #1beabd);
@@ -139,7 +165,6 @@ with gr.Blocks(css='''
           position: relative;
           font-size: 1.5em;
         }
-        
         .mood-input input {
           position: relative;
           display: inherit;
@@ -150,12 +175,10 @@ with gr.Blocks(css='''
           padding: 0 .325em;
           z-index: 1;
         }
-        
         .mood-input input:focus + span {
           opacity: 1;
           transform: scale(1);
         }
-        
         .mood-input span {
           transform: scale(.993, .94);
           transition: transform .5s, opacity .25s;
@@ -188,10 +211,10 @@ with gr.Blocks(css='''
           <input type="text" class="gradio-textbox" label="Mood">
           <span></span>
         </div>
-        ''')
+        ''', scale=1)
         # mood = gr.Textbox(label="Mood", elem_classes=["mood-input"])
-        flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
-        drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"])
+        flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"], scale=1)
+        drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"], scale=1)
         
     with gr.Row():
         sweetness = gr.Slider(label="Sweetness", minimum=0, maximum=10, elem_id="slider-sweetness")
@@ -263,6 +286,23 @@ with gr.Blocks(css='''
 #     )
 
 
+# .generate-button {
+#             background: linear-gradient(to right, #F0E68C, #E0FFFF, #FF6347);
+#             color: black;
+#             padding: 10px 20px;
+#             border: none;
+#             border-radius: 5px;
+#             cursor: pointer;
+#             font-weight: bold;
+#             text-transform: uppercase;
+#             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+#             transition: all 0.3s ease;
+#         }
+#         .generate-button:hover {
+#             background: linear-gradient(to right, #E0FFFF, #FF6347, #F0E68C);
+#             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+#         }
+        
 if __name__ == "__main__":
     demo.launch(#enable_queue=False,
         # Creates an auth screen 
