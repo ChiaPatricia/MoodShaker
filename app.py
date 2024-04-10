@@ -65,15 +65,15 @@ def extract_info(output_text):
 def format_cocktail_output(name, quote, ingredients, instruction, notes):
     # Construct the HTML output
     html_output = f'''
-    <div style="text-align: center; font-family: 'American Typewriter', serif; color: white;">
+    <div style="text-align: center; font-family: 'Apple Chancery', cursive; color: white;">
         <h1 style="font-size: 48px; color: white;">{name}</h1>
         <p style="font-size: 36px; margin-top: -15px; font-style: italic; color: white;">{quote}</p>
         <p style="font-size: 20px; color: white;">
-            <strong>Ingredients:</strong><br>
+            <strong style="color: white;">Ingredients:</strong><br>
             {ingredients}<br>
-            <strong>Instruction:</strong><br>
+            <strong style="color: white;">Instruction:</strong><br>
             {instruction}<br>
-            <strong>Notes:</strong><br>
+            <strong style="color: white;">Notes:</strong><br>
             {notes}<br>
         </p>
     </div>
@@ -87,6 +87,22 @@ with gr.Blocks(css='''
         }
         .gradio-textbox {
             opacity: 0.5; /* Change the opacity of the textbox */
+        }
+        .generate-button {
+            background: linear-gradient(to right, #F0E68C, #E0FFFF, #FF6347);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .generate-button:hover {
+            background: linear-gradient(to right, #E0FFFF, #FF6347, #F0E68C);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
     ''') as demo:
     with gr.Row():
@@ -111,11 +127,9 @@ with gr.Blocks(css='''
     #     flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
     #     drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"])
     with gr.Row():
-        allergies = gr.Textbox(label="Allergies")
-        additional_requests = gr.Textbox(label="Anything else you would like to address")
-        
-    with gr.Row():
-        generate_button = gr.Button("Generate Your Cocktail Recipe")
+        allergies = gr.Textbox(label="Allergies", scale=2)
+        additional_requests = gr.Textbox(label="Anything else you would like to address", scale=2)
+        generate_button = gr.Button("Generate Your Cocktail Recipe", scale=1, elem_classes=["generate-button"])
 
     with gr.Row():
         output_recipe = gr.HTML(label="Your Cocktail Recipe")
