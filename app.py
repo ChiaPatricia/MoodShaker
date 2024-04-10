@@ -139,7 +139,8 @@ with gr.Blocks(css='''
             background: white; /* White background */
             color: #333; /* Text color */
             padding: 10px; /* Padding inside the input */
-            border: 2px solid #FFDA42; /* Initial border color, change as needed */
+            border: 10px solid #FFDA42; /* Initial border color, change as needed */
+            border-color: #FFDA42
             border-radius: 5px; /* Rounded corners */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
             transition: all 0.3s ease; /* Smooth transition for interactions */
