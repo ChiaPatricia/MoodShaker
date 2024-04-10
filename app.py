@@ -177,13 +177,19 @@ with gr.Blocks(css='''
     ''') as demo:
 
     with gr.Row():
-        gr.HTML("""
+        gr.HTML('''
         <h2 style='text-align: center; color: white;'>MoodShaker Cocktail Generator</h2>
         <p style='text-align: center; color: white;'>Enter your preferences and let AI create a unique cocktail recipe for you!</p>
-        """)
+        ''')
         
     with gr.Row():
-        mood = gr.Textbox(label="Mood", elem_classes=["mood-input"])
+        mood = gr.HTML('''
+        <div class="mood-input">
+          <input type="text" class="gradio-textbox" label="Mood">
+          <span></span>
+        </div>
+        ''')
+        # mood = gr.Textbox(label="Mood", elem_classes=["mood-input"])
         flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
         drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"])
         
