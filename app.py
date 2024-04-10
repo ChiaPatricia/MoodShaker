@@ -161,7 +161,7 @@ with gr.Blocks(css='''
     with gr.Row():
         gr.HTML('''
         <div style="text-align: center;">
-            <img src="https://drive.google.com/file/d/1oUItrdwJbc2x8HVuVztOSV4dDCJqZWZc/view?usp=sharing" alt="MoodShaker Cocktail Generator" class="centered-image">
+            <img src="static/MoodShaker_Logo.png" alt="MoodShaker Cocktail Generator" class="centered-image">
         </div>
         ''')
         # gr.HTML('''
