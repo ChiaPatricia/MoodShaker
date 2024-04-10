@@ -89,6 +89,7 @@ def format_cocktail_output(name, quote, ingredients, instruction, notes):
 # Creating the Gradio interface
 with gr.Blocks(css='''
         .gradio-container {
+            padding: 0;
             background: url('https://images.unsplash.com/photo-1514361726087-38371321b5cd?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
         }
         .centered-image {
@@ -139,7 +140,7 @@ with gr.Blocks(css='''
 
     with gr.Row():
         gr.HTML('''
-        <div style="text-align: center;">
+        <div style="text-align: center; margin: 0;">
             <img src="https://huggingface.co/spaces/WhartonHackAIthon/MoodShaker/resolve/main/MoodShaker_Slogan.png" alt="MoodShaker Cocktail Generator" class="centered-image">
         </div>
         ''')
