@@ -48,19 +48,15 @@ def generate_cocktail(prompt, mood, sweetness, sour, savory, bitter, flavor_asso
 
 # Creating the Gradio interface
 with gr.Blocks(css='''
-        .gradio-container {background: url('https://images.unsplash.com/photo-1514361726087-38371321b5cd?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');}
-        .gradio-container { background-color: rgba(255, 255, 255, 0.1) !important; color: white; }
-        .gradio-container * { color: inherit; }
-        .gradio-label { color: white !important; }
-        .gradio-description { color: white !important; }
-        input, textarea, select { background-color: rgba(255, 255, 255, 0.2) !important; border-color: rgba(255, 255, 255, 0.4) !important; color: white !important; }
-        .gradio-button { background-color: rgba(255, 255, 255, 0.3) !important; border-color: rgba(255, 255, 255, 0.4) !important; color: white !important; }
-        .gradio-theme-dark .gradio-toolbar { background-color: rgba(0, 0, 0, 0.5) !important; }
+        .gradio-container {
+            background: url('https://images.unsplash.com/photo-1514361726087-38371321b5cd?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            opacity: 0.5;
+        }
     ''') as demo:
     with gr.Row():
         gr.HTML("""
-            <h2 style='text-align: center;'>MoodShaker Cocktail Generator</h2>
-            <p style='text-align: center;'>Enter your preferences and let AI create a unique cocktail recipe for you!</p>
+        <h2 style='text-align: center; color: white;'>MoodShaker Cocktail Generator</h2>
+        <p style='text-align: center; color: white;'>Enter your preferences and let AI create a unique cocktail recipe for you!</p>
         """)
     
     with gr.Column(scale=1):
@@ -77,7 +73,7 @@ with gr.Blocks(css='''
     
     with gr.Row():
         generate_button = gr.Button("Generate Your Cocktail Recipe")
-        output_recipe = gr.HTML(label="Your Cocktail Recipe")
+        output_recipe = gr.Markdown(label="Your Cocktail Recipe")
     
     generate_button.click(
         fn=generate_cocktail,
