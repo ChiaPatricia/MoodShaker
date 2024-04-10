@@ -55,9 +55,9 @@ def extract_info(output_text):
     if match:
         name = match.group(1)
         quote = match.group(2)
-        ingredients = match.group(3).replace('\n', '<br>')
-        instruction = match.group(4).replace('\n', '<br>')
-        notes = match.group(5)
+        ingredients = match.group(3).strip().replace('\n', '<br>')
+        instruction = match.group(4).strip().replace('\n', '<br>')
+        notes = match.group(5).strip()
         return name, quote, ingredients, instruction, notes
     else:
         return None
