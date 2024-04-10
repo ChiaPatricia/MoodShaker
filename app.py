@@ -142,6 +142,34 @@ with gr.Blocks(css='''
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+        .slider-sour {
+            background: linear-gradient(to right, rgba(252, 249, 190, 0.8), rgba(255, 220, 169, 0.8));
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .slider-savory {
+            background: linear-gradient(to right,rgba(255, 220, 169, 0.8), rgba(255, 190, 78, 0.8));
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .slider-bitter {
+            background: linear-gradient(to right,rgba(255, 190, 78, 0.8), rgba(255, 128, 4, 0.8));
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .slider-soberness_level {
+            background: linear-gradient(to right, rgba(255, 128, 4, 0.8), rgba(255, 102, 102, 0.8));
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
         .custom-checkbox-group2 input[type="checkbox"] + label {
             margin-right: 10px; /* Space between checkboxes */
             cursor: pointer; /* Mouse pointer changes to indicate clickable area */
@@ -213,10 +241,10 @@ with gr.Blocks(css='''
         
     with gr.Row():
         sweetness = gr.Slider(label="Sweetness", minimum=0, maximum=10, elem_id="slider-sweetness",elem_classes=["slider-sweetness"])
-        sour = gr.Slider(label="Sour", minimum=0, maximum=10, elem_id="slider-sour")
-        savory = gr.Slider(label="Savory", minimum=0, maximum=10, elem_id="slider-savory")
-        bitter = gr.Slider(label="Bitter", minimum=0, maximum=10, elem_id="slider-bitter")
-        soberness_level = gr.Slider(label="Level of Soberness", minimum=0, maximum=10, value=10, elem_id="slider-soberness_level")
+        sour = gr.Slider(label="Sour", minimum=0, maximum=10, elem_id="slider-sour", elem_classes=["slider-sour"])
+        savory = gr.Slider(label="Savory", minimum=0, maximum=10, elem_id="slider-savory", elem_classes=["slider-savory"])
+        bitter = gr.Slider(label="Bitter", minimum=0, maximum=10, elem_id="slider-bitter", elem_classes=["slider-bitter"])
+        soberness_level = gr.Slider(label="Level of Soberness", minimum=0, maximum=10, value=10, elem_id="slider-soberness_level", elem_classes=["slider-soberness_level"])
 
     # with gr.Row():
     #     flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
