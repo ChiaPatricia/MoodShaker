@@ -140,7 +140,7 @@ with gr.Blocks(css='''
     with gr.Row():
         gr.HTML('''
         <div style="text-align: center;">
-            <img src="https://github.com/tywei08/PySpark_Essentials/blob/master/MoodShaker%20Logo.png?raw=true" alt="MoodShaker Cocktail Generator" class="centered-image">
+            <img src="https://huggingface.co/spaces/WhartonHackAIthon/MoodShaker/resolve/main/MoodShaker_Slogan.png" alt="MoodShaker Cocktail Generator" class="centered-image">
         </div>
         ''')
         # gr.HTML('''
