@@ -32,7 +32,7 @@ def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association,
     client = openai.OpenAI(api_key=os.environ["API_TOKEN"])
     instruction = "Please provide a cocktail recipe given the mood and preference of the user.\n\n"
     user_prompt = f"Mood: {mood}\nTaste: Sweetness {sweetness}/10, Sour {sour}/10, Savory {savory}/10, Bitter {bitter}/10\nFlavor Association: {flavor_association}\nDrinking Experience: {drinking_experience}\nLevel of Soberness: {soberness_level}\nAllergies: {allergies}\nAdditional Requests: {additional_requests}\n\nMake sure to avoid all allergic ingredients.\n\n"
-    output_format = "Please strictly follow this output format:\n\nCocktail Name:[name]\nQuote:[one sentence quote related to the cocktail and the mood description]\nIngredients:\n[ingredient 1]\n[ingredient 2]\n...\nInstruction:\n1. [step 1]\n2. [step 2]\n...\nNotes:[notes]"
+    output_format = "Please strictly follow this output format:\n\nCocktail Name:[name]\nQuote:[one sentence quote related to the cocktail and the mood description]\nIngredients:[ingredient 1]\n[ingredient 2]\n...\nInstruction:1. [step 1]\n2. [step 2]\n...\nNotes:[notes]"
     prompt = instruction + user_prompt + output_format
 
     messages=[
@@ -65,7 +65,7 @@ def extract_info(output_text):
 def format_cocktail_output(name, quote, ingredients, instruction, notes):
     # Construct the HTML output
     html_output = f'''
-    <div style="text-align: center; font-family: 'Apple Chancery', cursive; color: white;">
+    <div style="text-align: center; font-family: 'Verdana', sans-serif; color: white;">
         <h1 style="font-size: 48px; color: white;">{name}</h1>
         <p style="font-size: 36px; margin-top: -15px; font-style: italic; color: white;">{quote}</p>
         <p style="font-size: 20px; color: white;">
@@ -90,7 +90,7 @@ with gr.Blocks(css='''
         }
         .generate-button {
             background: linear-gradient(to right, #F0E68C, #E0FFFF, #FF6347);
-            color: white;
+            color: black;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
