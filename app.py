@@ -136,7 +136,7 @@ with gr.Blocks(css='''
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .slider-sweetness {
-            background: linear-gradient(to right, rgba(255, 220, 169, 0.8), rgba(250, 171, 120, 0.8));
+            background: linear-gradient(to right, rgba(232, 243, 214, 0.8), rgba(252, 249, 190, 0.8));
             padding: 10px;
             border: 2px solid #ddd;
             border-radius: 5px;
@@ -212,7 +212,7 @@ with gr.Blocks(css='''
         drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"], elem_classes=["custom-checkbox-group2"])
         
     with gr.Row():
-        sweetness = gr.Slider(label="Sweetness", minimum=0, maximum=10, elem_id="slider-sweetness")
+        sweetness = gr.Slider(label="Sweetness", minimum=0, maximum=10, elem_id="slider-sweetness",elem_classes=["slider-sweetness"])
         sour = gr.Slider(label="Sour", minimum=0, maximum=10, elem_id="slider-sour")
         savory = gr.Slider(label="Savory", minimum=0, maximum=10, elem_id="slider-savory")
         bitter = gr.Slider(label="Bitter", minimum=0, maximum=10, elem_id="slider-bitter")
