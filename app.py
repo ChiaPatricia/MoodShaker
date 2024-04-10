@@ -31,7 +31,7 @@ def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association,
     client = openai.OpenAI(api_key=os.environ["API_TOKEN"])
     instruction = "Please provide a cocktail recipe given the mood and preference of the user.\n\n"
     user_prompt = f"Mood: {mood}\nTaste: Sweetness {sweetness}/10, Sour {sour}/10, Savory {savory}/10, Bitter {bitter}/10\nFlavor Association: {flavor_association}\nDrinking Experience: {drinking_experience}\nLevel of Soberness: {soberness_level}\nAllergies: {allergies}\nAdditional Requests: {additional_requests}\n\nMake sure to avoid all allergic ingredients.\n\n"
-    output_format = "Please strictly follow this output format:\n\nCocktail Name:[name]\nIngredients:[ingredients]\nInstruction:[instruction]\nNotes:[notes]"
+    output_format = "Please strictly follow this output format:\n\nCocktail Name:[name]\nQuote:[one sentence quote related to the cocktail and the mood description]\nIngredients:[ingredients]\nInstruction:[instruction]\nNotes:[notes]"
     prompt = instruction + user_prompt + output_format
 
     messages=[
