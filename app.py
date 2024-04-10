@@ -102,7 +102,7 @@ with gr.Blocks(css=css_styles) as demo:
 
     output_recipe = gr.HTML(label="Your Cocktail Recipe")
 
-    play_button = gr.Button("Play Background Music", visible=False, elem_classes=["generate-button"])  # Initially not visible
+    play_button = gr.Button("Play Music", visible=False, elem_classes=["generate-button", "right-aligned-small"])  # Initially not visible
     background_music = gr.Audio(label="Background Music", autoplay=True, visible=False)  # Initially not visible
 
     def on_generate_click(*args):
