@@ -45,7 +45,9 @@ def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association,
             messages=messages,
             max_tokens=1024)
         name, quote, ingredients, instruction, notes = extract_info(response.choices[0].message.content)
-        return format_cocktail_output(name, quote, ingredients, instruction, notes)
+        play_button.update(visible=True) #modified
+        background_music_component.update(visible=True)
+        return format_cocktail_output(name, quote, ingredients, instruction, notes, play_button,background_music_component)
     except Exception as e:
         return f'<p style="color: white; font-size: 20px;">{str(e)}</p>'
 
@@ -79,6 +81,9 @@ def format_cocktail_output(name, quote, ingredients, instruction, notes):
     </div>
     '''
     return html_output
+    
+def play_music():
+    return 'RPReplay_Final1712757356.mp3'
 
 # Creating the Gradio interface
 with gr.Blocks(css='''
@@ -133,12 +138,23 @@ with gr.Blocks(css='''
 
     with gr.Row():
         output_recipe = gr.HTML(label="Your Cocktail Recipe")
+
+    play_button = gr.Button("Play Music", visible=False)
+    background_music_component = gr.Audio(label="Background Music", autoplay=True, visible=False)  
+
     
+    # generate_button.click(
+    #     fn=generate_cocktail,
+    #     inputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests],
+    #     outputs=output_recipe
+    # )
     generate_button.click(
-        fn=generate_cocktail,
-        inputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests],
-        outputs=output_recipe
-    )
+            fn=generate_cocktail,
+            inputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, play_button],
+            outputs=[output_recipe, play_button] 
+        )
+
+    play_button.click(fn=play_music, inputs=[], outputs=background_music)
 
 
         # sweetness .range-slider {background: #FAD02E;}
