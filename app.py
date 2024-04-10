@@ -27,7 +27,7 @@ def create_assistant_json(uploaded_file, assistant_name,  assistant_message):
     
     return assistant.id
 
-def generate_cocktail(prompt, mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests):
+def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests):
     client = openai.OpenAI(api_key=os.environ["API_TOKEN"])
     instruction = "Please provide a cocktail recipe given the mood and preference of the user.\n\n"
     user_prompt = f"Mood: {mood}\nTaste: Sweetness {sweetness}/10, Sour {sour}/10, Savory {savory}/10, Bitter {bitter}/10\nFlavor Association: {flavor_association}\nDrinking Experience: {drinking_experience}\nLevel of Soberness: {soberness_level}\nAllergies: {allergies}\nAdditional Requests: {additional_requests}\n\nMake sure to avoid all allergic ingredients.\n\nRecipe:"
