@@ -158,45 +158,58 @@ with gr.Blocks(css='''
           transform: scaleX(0.9);
         }
         .mood-input {
-          background: linear-gradient(21deg, #10abff, #1beabd);
-          padding: 3px;
-          display: inline-block;
-          border-radius: 9999em;
-          position: relative;
-          font-size: 1.5em;
+            position: relative;
+            font-size: 1.5em;
+            background: linear-gradient(21deg, #10abff, #1beabd);
+            padding: 3px;
+            display: inline-block;
+            border-radius: 9999em;
+            margin: 50px; /* Added to match your example */
         }
         .mood-input input {
-          position: relative;
-          display: inherit;
-          border-radius: inherit;
-          margin: 0;
-          border: none;
-          outline: none;
-          padding: 0 .325em;
-          width: 500px;
-          z-index: 1;
-        }
-        .mood-input input:focus + span {
-          opacity: 1;
-          transform: scale(1);
+            position: relative;
+            display: inherit;
+            border-radius: inherit;
+            margin: 0;
+            border: none;
+            outline: none;
+            padding: 0 .325em;
+            z-index: 1;
+            font-family: inherit;
+            line-height: inherit;
+            color: #2e3750;
+            min-width: 12em; /* Adjusted to ensure consistency */
         }
         .mood-input span {
-          transform: scale(.993, .94);
-          transition: transform .5s, opacity .25s;
-          opacity: 0;
-          position: absolute;
-          z-index: 0;
-          margin: 4px;
-          left: 0;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          border-radius: inherit;
-          pointer-events: none;
-          box-shadow: inset 0 0 0 3px #fff,
-            0 0 0 4px #fff,
-            3px -3px 30px #1beabd,
-            -3px 3px 30px #10abff;
+            transform: scale(.993, .94);
+            transition: transform .5s, opacity .25s;
+            opacity: 0;
+            position: absolute;
+            z-index: 0;
+            margin: 4px;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            box-shadow: inset 0 0 0 3px #fff, 0 0 0 4px #fff, 3px -3px 30px #1beabd, -3px 3px 30px #10abff;
+        }
+        .mood-input input:focus + span {
+            opacity: 1;
+            transform: scale(1);
+        }
+        body {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.5;
+        }
+        ::placeholder {
+            color: #cbd0d5;
         }
     ''') as demo:
 
