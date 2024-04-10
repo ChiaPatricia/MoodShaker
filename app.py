@@ -352,7 +352,7 @@ with gr.Blocks(css='''
 
         
 if __name__ == "__main__":
-    demo.launch(share=True, #enable_queue=False,
+    demo.launch(#enable_queue=False,
         # Creates an auth screen 
         auth_message="Welcome! Enter a Username and Password"
                ).queue()
