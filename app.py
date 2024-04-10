@@ -30,8 +30,8 @@ def create_assistant_json(uploaded_file, assistant_name,  assistant_message):
 def generate_cocktail(prompt, mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests):
     client = openai.OpenAI(api_key=os.environ["API_TOKEN"])
     instruction = "Please generate a cocktail recipe based on the user's following preferences.\n\n"
-    prompt = f"Mood: {mood}\nTaste: Sweetness {sweetness}, Sour {sour}, Savory {savory}, Bitter {bitter}\nFlavor Association: {flavor_association}\nDrinking Experience: {drinking_experience}\nLevel of Soberness: {soberness_level}\nAllergies: {allergies}\nAdditional Requests: {additional_requests}\n\nRecipe:"
-    prompt = instruction + prompt
+    user_prompt = f"Mood: {mood}\nTaste: Sweetness {sweetness}, Sour {sour}, Savory {savory}, Bitter {bitter}\nFlavor Association: {flavor_association}\nDrinking Experience: {drinking_experience}\nLevel of Soberness: {soberness_level}\nAllergies: {allergies}\nAdditional Requests: {additional_requests}\n\nRecipe:"
+    prompt = instruction + user_prompt
 
     messages=[
     {"role": "system", "content": "You are a helpful bartender assistant."},
@@ -47,10 +47,19 @@ def generate_cocktail(prompt, mood, sweetness, sour, savory, bitter, flavor_asso
         return str(e)
 
 # Creating the Gradio interface
-with gr.Blocks(css=".gradio-container {background: url('https://static.vecteezy.com/system/resources/thumbnails/030/814/051/small/wooden-table-and-blur-tropical-green-grass-background-product-display-montage-high-quality-8k-fhd-ai-generated-photo.jpg');}") as demo:
+with gr.Blocks(css='''
+        .gradio-container {background: url('https://static.vecteezy.com/system/resources/thumbnails/030/814/051/small/wooden-table-and-blur-tropical-green-grass-background-product-display-montage-high-quality-8k-fhd-ai-generated-photo.jpg');}
+        #sweetness .range-slider {background: #FAD02E;}
+        #sour .range-slider {background: #4CAF50;}
+        #savory .range-slider {background: #795548;}
+        #bitter .range-slider {background: #F44336;}
+        #soberness_level .range-slider {background: #2196F3;}
+    ''') as demo:
     with gr.Row():
-        gr.Markdown("## MoodShaker Cocktail Generator")
-        gr.Markdown("### Enter your preferences and let AI create a unique cocktail recipe for you!")
+        gr.HTML("""
+            <h2 style='text-align: center;'>MoodShaker Cocktail Generator</h2>
+            <p style='text-align: center;'>Enter your preferences and let AI create a unique cocktail recipe for you!</p>
+        """)
     
     with gr.Column(scale=1):
         mood = gr.Textbox(label="Mood")
@@ -66,7 +75,7 @@ with gr.Blocks(css=".gradio-container {background: url('https://static.vecteezy.
     
     with gr.Row():
         generate_button = gr.Button("Generate Your Cocktail Recipe")
-        output_recipe = gr.Textbox(label="Your Cocktail Recipe", value="")
+        output_recipe = gr.HTML(label="Your Cocktail Recipe")
     
     generate_button.click(
         fn=generate_cocktail,
