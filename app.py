@@ -123,19 +123,34 @@ with gr.Blocks(css='''
             text-transform: uppercase;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            outline: none; /* Add this to remove the outline on focus for some browsers */
+            outline: none; /* Removes the outline on focus for some browsers */
         }
         
-        .generate-button:hover {
+        .generate-button:hover, .generate-button:active {
             background: linear-gradient(to right, #E0FFFF, #FF6347, #F0E68C);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            /* Combines the glow from each color in the gradient */
+            box-shadow: 
+              0 0 15px rgba(240, 230, 140, 0.7), 
+              0 0 25px rgba(240, 230, 140, 0.7),
+              0 0 15px rgba(224, 255, 255, 0.7),
+              0 0 25px rgba(224, 255, 255, 0.7),
+              0 0 15px rgba(255, 99, 71, 0.7),
+              0 0 25px rgba(255, 99, 71, 0.7);
+            transform: translateY(2px); /* Optional: Slightly push the button down on active */
         }
         
         .generate-button:active {
-            box-shadow: 0 0 15px rgba(30, 255, 255, 0.5), 
-                        0 0 20px rgba(30, 255, 255, 0.5) inset; /* Creates the glowing effect */
-            transform: translateY(2px); /* Optional: Slightly push the button down */
+            /* You may want to add an extra inset shadow to give a sense of depth when clicked */
+            box-shadow: 
+              0 0 15px rgba(240, 230, 140, 0.7), 
+              0 0 25px rgba(240, 230, 140, 0.7),
+              0 0 15px rgba(224, 255, 255, 0.7),
+              0 0 25px rgba(224, 255, 255, 0.7),
+              0 0 15px rgba(255, 99, 71, 0.7),
+              0 0 25px rgba(255, 99, 71, 0.7),
+              0 0 20px rgba(30, 255, 255, 0.5) inset;
         }
+
     ''') as demo:
 
     with gr.Row():
@@ -151,7 +166,7 @@ with gr.Blocks(css='''
         #   <span></span>
         # </div>
         # ''')
-        mood = gr.Textbox(label="Mood", elem_classes=["mood-input"])
+        mood = gr.Textbox(label="How are you feeling today?", elem_classes=["mood-input"])
         flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
         drinking_experience = gr.CheckboxGroup(label="Drinking Experience", choices=["Refreshing", "Warming", "Comforting", "Energizing", "Relaxing"])
         
@@ -160,7 +175,7 @@ with gr.Blocks(css='''
         sour = gr.Slider(label="Sour", minimum=0, maximum=10, elem_id="slider-sour")
         savory = gr.Slider(label="Savory", minimum=0, maximum=10, elem_id="slider-savory")
         bitter = gr.Slider(label="Bitter", minimum=0, maximum=10, elem_id="slider-bitter")
-        soberness_level = gr.Slider(label="Level of Soberness", minimum=0, maximum=10, elem_id="slider-soberness_level")
+        soberness_level = gr.Slider(label="Level of Soberness", minimum=0, maximum=10, value=10, elem_id="slider-soberness_level")
 
     # with gr.Row():
     #     flavor_association = gr.CheckboxGroup(label="Flavor Association", choices=["Fruity", "Herbal", "Spicy", "Floral", "Nutty", "Woody", "Earthy"])
