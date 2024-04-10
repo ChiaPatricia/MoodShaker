@@ -50,7 +50,9 @@ def generate_cocktail(prompt, mood, sweetness, sour, savory, bitter, flavor_asso
 with gr.Blocks(css='''
         .gradio-container {
             background: url('https://images.unsplash.com/photo-1514361726087-38371321b5cd?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            opacity: 0.5;
+        }
+        .gradio-textbox {
+            opacity: 0.5; /* Change the opacity of the textbox */
         }
     ''') as demo:
     with gr.Row():
