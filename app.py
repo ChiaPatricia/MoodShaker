@@ -159,7 +159,11 @@ with gr.Blocks(css='''
     ''') as demo:
 
     with gr.Row():
-        gr.Image(value="MoodShaker_Logo.png", elem_id="centered-image")
+        gr.HTML('''
+        <div style="text-align: center;">
+            <img src="https://drive.google.com/file/d/1oUItrdwJbc2x8HVuVztOSV4dDCJqZWZc/view?usp=sharing" alt="MoodShaker Cocktail Generator" class="centered-image">
+        </div>
+        ''')
         # gr.HTML('''
         # <h2 style='text-align: center; color: white;'>MoodShaker Cocktail Generator</h2>
         # <p style='text-align: center; color: white;'>Enter your preferences and let AI create a unique cocktail recipe for you!</p>
