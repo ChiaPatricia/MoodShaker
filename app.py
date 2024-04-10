@@ -29,8 +29,8 @@ def create_assistant_json(uploaded_file, assistant_name,  assistant_message):
 
 def generate_cocktail(prompt, mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests):
     client = openai.OpenAI(api_key=os.environ["API_TOKEN"])
-    instruction = "Please generate a cocktail recipe based on the user's following preferences.\n\n"
-    user_prompt = f"Mood: {mood}\nTaste: Sweetness {sweetness}, Sour {sour}, Savory {savory}, Bitter {bitter}\nFlavor Association: {flavor_association}\nDrinking Experience: {drinking_experience}\nLevel of Soberness: {soberness_level}\nAllergies: {allergies}\nAdditional Requests: {additional_requests}\n\nRecipe:"
+    instruction = "Please provide a cocktail recipe given the mood and preference of the user.\n\n"
+    user_prompt = f"Mood: {mood}\nTaste: Sweetness {sweetness}/10, Sour {sour}/10, Savory {savory}/10, Bitter {bitter}/10\nFlavor Association: {flavor_association}\nDrinking Experience: {drinking_experience}\nLevel of Soberness: {soberness_level}\nAllergies: {allergies}\nAdditional Requests: {additional_requests}\n\nMake sure to avoid all allergic ingredients.\n\nRecipe:"
     prompt = instruction + user_prompt
 
     messages=[
@@ -48,12 +48,14 @@ def generate_cocktail(prompt, mood, sweetness, sour, savory, bitter, flavor_asso
 
 # Creating the Gradio interface
 with gr.Blocks(css='''
-        .gradio-container {background: url('https://static.vecteezy.com/system/resources/thumbnails/030/814/051/small/wooden-table-and-blur-tropical-green-grass-background-product-display-montage-high-quality-8k-fhd-ai-generated-photo.jpg');}
-        #sweetness .range-slider {background: #FAD02E;}
-        #sour .range-slider {background: #4CAF50;}
-        #savory .range-slider {background: #795548;}
-        #bitter .range-slider {background: #F44336;}
-        #soberness_level .range-slider {background: #2196F3;}
+        .gradio-container {background: url('https://images.unsplash.com/photo-1514361726087-38371321b5cd?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');}
+        .gradio-container { background-color: rgba(255, 255, 255, 0.1) !important; color: white; }
+        .gradio-container * { color: inherit; }
+        .gradio-label { color: white !important; }
+        .gradio-description { color: white !important; }
+        input, textarea, select { background-color: rgba(255, 255, 255, 0.2) !important; border-color: rgba(255, 255, 255, 0.4) !important; color: white !important; }
+        .gradio-button { background-color: rgba(255, 255, 255, 0.3) !important; border-color: rgba(255, 255, 255, 0.4) !important; color: white !important; }
+        .gradio-theme-dark .gradio-toolbar { background-color: rgba(0, 0, 0, 0.5) !important; }
     ''') as demo:
     with gr.Row():
         gr.HTML("""
@@ -84,6 +86,13 @@ with gr.Blocks(css='''
     )
 
 
+        # sweetness .range-slider {background: #FAD02E;}
+        # sour .range-slider {background: #4CAF50;}
+        # savory .range-slider {background: #795548;}
+        # bitter .range-slider {background: #F44336;}
+        # soberness_level .range-slider {background: #2196F3;}
+
+        
 # with gr.Blocks(css=".gradio-container {background: url(https://static.vecteezy.com/system/resources/thumbnails/030/814/051/small/wooden-table-and-blur-tropical-green-grass-background-product-display-montage-high-quality-8k-fhd-ai-generated-photo.jpg)}") as demo:
 #     gr.Markdown("## To create an OpenAI Assistant please fill in the following sections. Upload a file to give the Assistant knowledge and a focus on something outside of it's normal training. Then add an assistant name and message. The Assistant message should guide the model into in a role. An example would be, You are a helpful Asssitant who is knowledgable in the field of...")
 #     gr.Markdown("## After creating the ID head to [OpenAI_Assistant_Chat](https://huggingface.co/spaces/jadend/OpenAI_Assistant_Chat).")
@@ -99,6 +108,7 @@ with gr.Blocks(css='''
 #         inputs=description,
 #         outputs=output_id
 #     )
+
 
 if __name__ == "__main__":
     demo.launch(#enable_queue=False,
