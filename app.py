@@ -89,13 +89,13 @@ def format_cocktail_output(name, quote, ingredients, instruction, notes):
 # Creating the Gradio interface
 with gr.Blocks(css='''
         .gradio-container {
-            padding: 0;
             background: url('https://images.unsplash.com/photo-1514361726087-38371321b5cd?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
         }
         .centered-image {
             display: block;
             margin-left: auto;
             margin-right: auto;
+            margin-bottom: -20px;
             max-width: 500px; /* Maximum width of the image */
             width: 100%;
         }
