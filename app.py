@@ -32,7 +32,7 @@ def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association,
     client = openai.OpenAI(api_key=os.environ["API_TOKEN"])
     instruction = "Please provide a cocktail recipe given the mood and preference of the user.\n\n"
     user_prompt = f"Mood: {mood}\nTaste: Sweetness {sweetness}/10, Sour {sour}/10, Savory {savory}/10, Bitter {bitter}/10\nFlavor Association: {flavor_association}\nDrinking Experience: {drinking_experience}\nLevel of Soberness: {soberness_level}\nAllergies: {allergies}\nAdditional Requests: {additional_requests}\n\nMake sure to avoid all allergic ingredients.\n\n"
-    output_format = "Please strictly follow this output format:\n\nCocktail Name:[name]\nQuote:[one sentence quote related to the cocktail and the mood description]\nIngredients:[ingredients]\nInstruction:[instruction]\nNotes:[notes]"
+    output_format = "Please strictly follow this output format:\n\nCocktail Name:[name]\n\nQuote:[one sentence quote related to the cocktail and the mood description]\n\nIngredients:[ingredients one at a line]\n\nInstruction:[instruction]\n\nNotes:[notes]"
     prompt = instruction + user_prompt + output_format
 
     messages=[
@@ -50,14 +50,14 @@ def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association,
         return f'<p style="color: white; font-size: 20px;">{str(e)}</p>'
 
 def extract_info(output_text):
-    pattern = r"Cocktail Name:(.*?)\nQuote:(.*?)\nIngredients:(.*?)\nInstruction:(.*?)\nNotes:(.*?)$"
+    pattern = r"Cocktail Name:(.*?)Quote:(.*?)Ingredients:(.*?)Instruction:(.*?)Notes:(.*?)$"
     match = re.search(pattern, output_text, re.DOTALL)
     if match:
-        name = match.group(1).strip()
-        quote = match.group(2).strip()
-        ingredients = match.group(3).strip()
-        instruction = match.group(4).strip()
-        notes = match.group(5).strip()
+        name = match.group(1)
+        quote = match.group(2)
+        ingredients = match.group(3)
+        instruction = match.group(4)
+        notes = match.group(5)
         return name, quote, ingredients, instruction, notes
     else:
         return None
@@ -65,10 +65,10 @@ def extract_info(output_text):
 def format_cocktail_output(name, quote, ingredients, instruction, notes):
     # Construct the HTML output
     html_output = f'''
-    <div style="text-align: center; font-family: 'fantasy'; color: #fff;">
-        <h1 style="font-size: 24px;">{name}</h1>
-        <p style="font-size: 18px; margin-top: -10px; font-style: italic;">"{quote}"</p>
-        <p style="font-size: 16px;">
+    <div style="text-align: center; font-family: 'monospace'; color: #FFFFFF;">
+        <h1 style="font-size: 40px;">{name}</h1>
+        <p style="font-size: 30px; margin-top: -10px; font-style: italic;">{quote}</p>
+        <p style="font-size: 18px;">
             <strong>Ingredients:</strong> {ingredients}<br>
             <strong>Instruction:</strong> {instruction}<br>
             <strong>Notes:</strong> {notes}<br>
