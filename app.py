@@ -100,7 +100,7 @@ with gr.Blocks(css='''
             width: 100%;
         }
         .custom-input {
-            background: linear-gradient(to right, #E8F3D6, #FCF9BE); /* Or any color you'd like */
+            background: linear-gradient(to right, rgba(232, 243, 214, 0.8), rgba(252, 249, 190, 0.8)); /* Or any color you'd like */
             opacity: 0.8
             color: #333; /* Text color */
             padding: 10px; /* Padding inside the input */
@@ -114,7 +114,7 @@ with gr.Blocks(css='''
             box-shadow: 0 0 8px rgba(240, 230, 140, 0.8); /* Glow effect on focus */
         }
         .custom-checkbox-group1 {
-            background: linear-gradient(to right, #FCF9BE, #FFDCA9);
+            background: linear-gradient(to right, rgba(252, 249, 190, 0.8), rgba(255, 220, 169, 0.8));
             padding: 10px;
             border: 2px solid #ddd;
             border-radius: 5px;
@@ -129,7 +129,7 @@ with gr.Blocks(css='''
             font-weight: bold;
         }
         .custom-checkbox-group2 {
-            background: linear-gradient(to right, #FFDCA9, #FAAB78);
+            background: linear-gradient(to right, rgba(255, 220, 169, 0.8), rgba(250, 171, 120, 0.8));
             padding: 10px;
             border: 2px solid #ddd;
             border-radius: 5px;
