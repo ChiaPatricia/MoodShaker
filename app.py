@@ -54,13 +54,16 @@ def format_cocktail_output(name, quote, ingredients, instruction, notes):
     """Formats the cocktail recipe into HTML for display."""
     html_output = f'''
     <div style="text-align: center; font-family: 'Verdana', sans-serif; color: white;">
-        <h1>{name}</h1>
-        <p style="font-size: 36px; margin-top: -15px; font-style: italic;">{quote}</p>
-        <div style="font-size: 20px;">
-            <strong>Ingredients:</strong><br>{ingredients}<br>
-            <strong>Instruction:</strong><br>{instruction}<br>
-            <strong>Notes:</strong><br>{notes}<br>
-        </div>
+        <h1 style="font-size: 48px; color: white;">{name}</h1>
+        <p style="font-size: 36px; margin-top: -15px; font-style: italic; color: white;">{quote}</p>
+        <p style="font-size: 20px; color: white;">
+            <strong style="color: white;">Ingredients:</strong><br>
+            {ingredients}<br>
+            <strong style="color: white;">Instruction:</strong><br>
+            {instruction}<br>
+            <strong style="color: white;">Notes:</strong><br>
+            {notes}<br>
+        </p>
     </div>
     '''
     return html_output
