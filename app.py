@@ -142,29 +142,32 @@ with gr.Blocks(css='''
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+        .slider-sweetness::-webkit-slider-runnable-track {
+            background: rgba(200, 152, 152, 0.8);
+        }
         .slider-sour {
-            background: linear-gradient(to right, rgba(252, 249, 190, 0.8), rgba(255, 220, 169, 0.8));
+            background: linear-gradient(to right, rgba(252, 249, 190, 0.8), rgba(251, 230, 180, 0.8));
             padding: 10px;
             border: 2px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .slider-savory {
-            background: linear-gradient(to right,rgba(255, 220, 169, 0.8), rgba(255, 190, 78, 0.8));
+            background: linear-gradient(to right,rgba(251, 230, 180, 0.8), rgba(255, 220, 169, 0.8));
             padding: 10px;
             border: 2px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .slider-bitter {
-            background: linear-gradient(to right,rgba(255, 190, 78, 0.8), rgba(255, 128, 4, 0.8));
+            background: linear-gradient(to right,rgba(255, 220, 169, 0.8), rgba(252, 200, 135, 0.8));
             padding: 10px;
             border: 2px solid #ddd;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         .slider-soberness_level {
-            background: linear-gradient(to right, rgba(255, 128, 4, 0.8), rgba(255, 102, 102, 0.8));
+            background: linear-gradient(to right, rgba(252, 200, 135, 0.8), rgba(250, 171, 120, 0.8));
             padding: 10px;
             border: 2px solid #ddd;
             border-radius: 5px;
