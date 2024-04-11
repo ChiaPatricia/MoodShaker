@@ -133,7 +133,10 @@ with gr.Blocks(css=css_styles) as demo:
         # Write the HTML content to a temporary HTML file
         with open(html_path, 'w') as f:
             f.write(html_content)
-    
+
+        # Convert HTML to PDF
+        pdfkit.from_file(html_path, pdf_path)
+        
     def reset():
         return "", 0, 0, 0, 0, [], [], 10, "", "", "", gr.update(visible=False), gr.update(visible=False), gr.update(visible=False)
         
