@@ -2,4 +2,4 @@ openai
 gradio
 pdfkit
 pyppeteer
-wkhtmltopdf
+html2image
