@@ -128,6 +128,7 @@ with gr.Blocks(css=css_styles) as demo:
     def save_as_pdf(html_content):
         # Define path for temporary HTML and PDF files
         html_path = "output_recipe.html"
+        pdf_path = "output_recipe.pdf"
         
         # Write the HTML content to a temporary HTML file
         with open(html_path, 'w') as f:
@@ -144,7 +145,7 @@ with gr.Blocks(css=css_styles) as demo:
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
 
-    save_pdf_button.click(fn=save_as_pdf, inputs=output_recipe, outputs=[])
+    save_pdf_button.click(fn=save_as_pdf, inputs=[output_recipe], outputs=[])
     
     clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music, save_pdf_button])
         
