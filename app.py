@@ -102,13 +102,11 @@ with gr.Blocks(css=css_styles) as demo:
     with gr.Row():
         output_recipe = gr.HTML(label="Your Cocktail Recipe")
 
-    with gr.Row():
-        play_button = gr.Button("Play Music", visible=False, elem_classes=["generate-button"], scale=1)  # Initially not visible
-        background_music = gr.Audio(label="Background Music", autoplay=True, visible=False, scale=4)  # Initially not visible
+    play_button = gr.Button("Play Music", visible=False, elem_classes=["generate-button"], scale=1)  # Initially not visible
+    background_music = gr.Audio(label="Background Music", autoplay=True, visible=False, scale=4)  # Initially not visible
 
     with gr.Row():
         save_pdf_button = gr.Button("Download Recipe", visible=False)
-        pdf_link = gr.File(label="Download PDF", visible=False)
 
     def on_generate_click(*args):
         recipe, show_play_button, show_save_button = generate_cocktail(*args)
@@ -117,20 +115,13 @@ with gr.Blocks(css=css_styles) as demo:
     def save_as_pdf(html_content):
         # Define path for temporary HTML and PDF files
         html_path = "output_recipe.html"
-        pdf_path = "output_recipe.pdf"
         
         # Write the HTML content to a temporary HTML file
         with open(html_path, 'w') as f:
             f.write(html_content)
-        
-        # Convert HTML to PDF
-        pdfkit.from_file(html_path, pdf_path)
-        
-        # Provide a link for the generated PDF
-        return pdf_path
     
     def reset():
-        return "", 0, 0, 0, 0, [], [], 10, "", "", "", gr.update(visible=False), gr.update(visible=False)
+        return "", 0, 0, 0, 0, [], [], 10, "", "", "", gr.update(visible=False), gr.update(visible=False), gr.update(visible=False)
         
     generate_button.click(
         fn=on_generate_click,
@@ -140,9 +131,9 @@ with gr.Blocks(css=css_styles) as demo:
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
 
-    save_pdf_button.click(fn=save_as_pdf, inputs=output_recipe, outputs=pdf_link)
+    save_pdf_button.click(fn=save_as_pdf, inputs=output_recipe, outputs=[]])
     
-    clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music])
+    clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music, save_pdf_button])
         
 if __name__ == "__main__":
     demo.launch(#enable_queue=False,
