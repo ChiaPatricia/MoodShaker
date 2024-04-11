@@ -4,9 +4,8 @@ import json
 import re
 from datetime import datetime
 import openai
-import pdfkit
-import random
-import base64
+from pyppeteer import launch
+import tempfile
 
 music_files = [
     "RPReplay_Final1712757356.mp3",
@@ -103,6 +102,26 @@ def save_as_pdf(html_content):
     
     # Return HTML anchor tag for the download link
     return f'<a href="{pdf_data_url}" download="CocktailRecipe.pdf" style="color: white; font-size: 20px;">Download PDF</a>'
+
+def generate_pdf_from_html(html_content):
+    browser = launch()
+    page = browser.newPage()
+    
+    page.setContent(html_content)
+    
+    # Create a temporary file to save the PDF
+    with tempfile.NamedTemporaryFile(suffix='.pdf', delete=False) as tmp_file:
+        pdf_path = tmp_file.name
+    
+        page.pdf({'path': pdf_path, 'format': 'A4'})
+    
+    # Close browser
+    browser.close()
+    
+    # Generate URL for the temporary PDF file
+    pdf_url = f'file://{pdf_path}'
+    
+    return pdf_url, True
         
 with open('style.css', 'r') as file:
     css_styles = file.read()
@@ -139,10 +158,10 @@ with gr.Blocks(css=css_styles) as demo:
 
     play_button = gr.Button("Play Music", visible=False, elem_classes=["generate-button"], scale=1)  # Initially not visible
     background_music = gr.Audio(label="Background Music", autoplay=True, visible=False, scale=4)  # Initially not visible
-    pdf_download_link = gr.HTML(visible=False)  # For displaying the PDF download link
 
     with gr.Row():
         save_pdf_button = gr.Button("Download Recipe as PDF", visible=False)
+        pdf_download_link = gr.File(label="Download Link", visible=False)  # For displaying the PDF download link
 
     def on_generate_click(*args):
         recipe, show_play_button, show_save_button = generate_cocktail(*args)
@@ -159,7 +178,7 @@ with gr.Blocks(css=css_styles) as demo:
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
 
-    save_pdf_button.click(fn=save_as_pdf, inputs=[output_recipe], outputs=[pdf_download_link])
+    save_pdf_button.click(fn=generate_pdf_from_html, inputs=[output_recipe], outputs=[pdf_download_link, pdf_download_link])
     
     clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music, save_pdf_button])
         
