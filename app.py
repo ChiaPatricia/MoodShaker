@@ -4,8 +4,12 @@ import json
 import re
 from datetime import datetime
 import openai
-from pyppeteer import launch
-import tempfile
+# from pyppeteer import launch
+# import tempfile
+
+user_db = { 
+           os.environ["username"]: os.environ["password"],
+          }
 
 music_files = [
     "RPReplay_Final1712757356.mp3",
@@ -81,53 +85,53 @@ def format_cocktail_output(name, quote, ingredients, instruction, notes):
     '''
     return html_output
 
-def save_as_pdf(html_content):
-    """Converts HTML content to PDF, encodes it in base64, and returns a download link."""
-    html_path = "output_recipe.html"
-    pdf_path = "output_recipe.pdf"
+# def save_as_pdf(html_content):
+#     """Converts HTML content to PDF, encodes it in base64, and returns a download link."""
+#     html_path = "output_recipe.html"
+#     pdf_path = "output_recipe.pdf"
     
-    # Write the HTML content to a temporary file
-    with open(html_path, 'w') as f:
-        f.write(html_content)
+#     # Write the HTML content to a temporary file
+#     with open(html_path, 'w') as f:
+#         f.write(html_content)
     
-    # Convert HTML to PDF
-    pdfkit.from_file(html_path, pdf_path)
+#     # Convert HTML to PDF
+#     pdfkit.from_file(html_path, pdf_path)
     
-    # Encode the PDF file in base64
-    with open(pdf_path, "rb") as pdf_file:
-        encoded_pdf = base64.b64encode(pdf_file.read()).decode("utf-8")
+#     # Encode the PDF file in base64
+#     with open(pdf_path, "rb") as pdf_file:
+#         encoded_pdf = base64.b64encode(pdf_file.read()).decode("utf-8")
     
-    # Create a Data URL for the PDF
-    pdf_data_url = f"data:application/pdf;base64,{encoded_pdf}"
+#     # Create a Data URL for the PDF
+#     pdf_data_url = f"data:application/pdf;base64,{encoded_pdf}"
     
-    # Return HTML anchor tag for the download link
-    return f'<a href="{pdf_data_url}" download="CocktailRecipe.pdf" style="color: white; font-size: 20px;">Download PDF</a>'
+#     # Return HTML anchor tag for the download link
+#     return f'<a href="{pdf_data_url}" download="CocktailRecipe.pdf" style="color: white; font-size: 20px;">Download PDF</a>'
 
-def generate_pdf_from_html(html_content):
-    browser = launch()
-    page = browser.newPage()
+# def generate_pdf_from_html(html_content):
+#     browser = launch()
+#     page = browser.newPage()
     
-    page.setContent(html_content)
+#     page.setContent(html_content)
     
-    # Create a temporary file to save the PDF
-    with tempfile.NamedTemporaryFile(suffix='.pdf', delete=False) as tmp_file:
-        pdf_path = tmp_file.name
+#     # Create a temporary file to save the PDF
+#     with tempfile.NamedTemporaryFile(suffix='.pdf', delete=False) as tmp_file:
+#         pdf_path = tmp_file.name
     
-        page.pdf({'path': pdf_path, 'format': 'A4'})
+#         page.pdf({'path': pdf_path, 'format': 'A4'})
     
-    # Close browser
-    browser.close()
+#     # Close browser
+#     browser.close()
     
-    # Generate URL for the temporary PDF file
-    pdf_url = f'file://{pdf_path}'
+#     # Generate URL for the temporary PDF file
+#     pdf_url = f'file://{pdf_path}'
     
-    return pdf_url, True
+#     return pdf_url, True
         
 with open('style.css', 'r') as file:
     css_styles = file.read()
 
 # Creating the Gradio interface
-with gr.Blocks(css=css_styles) as demo:
+with gr.Blocks(css=css_styles) as MoodShaker:
     with gr.Row():
         gr.HTML('''
         <div style="text-align: center; margin: 0;">
@@ -159,9 +163,9 @@ with gr.Blocks(css=css_styles) as demo:
     play_button = gr.Button("Play Music", visible=False, elem_classes=["generate-button"], scale=1)  # Initially not visible
     background_music = gr.Audio(label="Background Music", autoplay=True, visible=False, scale=4)  # Initially not visible
 
-    with gr.Row():
-        save_pdf_button = gr.Button("Download Recipe as PDF", visible=False)
-        pdf_download_link = gr.File(label="Download Link", visible=False)  # For displaying the PDF download link
+    # with gr.Row():
+    #     save_pdf_button = gr.Button("Download Recipe as PDF", visible=False)
+    #     pdf_download_link = gr.File(label="Download Link", visible=False)  # For displaying the PDF download link
 
     def on_generate_click(*args):
         recipe, show_play_button, show_save_button = generate_cocktail(*args)
@@ -183,7 +187,8 @@ with gr.Blocks(css=css_styles) as demo:
     clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music, save_pdf_button])
         
 if __name__ == "__main__":
-    demo.launch(#enable_queue=False,
+    MoodShaker.launch(#enable_queue=False,
         # Creates an auth screen 
-        auth_message="Welcome! Enter a Username and Password"
+        auth=lambda u, p: user_db.get(u) == p,
+        auth_message="Welcome to MoodShaker! Enter a Username and Password"
                ).queue()
