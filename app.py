@@ -95,20 +95,39 @@ with gr.Blocks(css=css_styles) as demo:
     with gr.Row():
         allergies = gr.Textbox(label="Allergies", scale=2, elem_classes=["custom-input1"])
         additional_requests = gr.Textbox(label="Anything else you would like to address", scale=2, elem_classes=["custom-input2"])
-        generate_button = gr.Button("Generate Your Cocktail Recipe", scale=0.75, elem_classes=["generate-button"])
-        clear_button = gr.Button("Clear", scale=0.25)
+        generate_button = gr.Button("Generate Your Cocktail Recipe", scale=0.85, elem_classes=["generate-button"])
+        clear_button = gr.Button("Clear", scale=0.15)
 
     with gr.Row():
         output_recipe = gr.HTML(label="Your Cocktail Recipe")
 
     with gr.Row():
-        play_button = gr.Button("Play Music", visible=False, elem_classes=["generate-button"], scale=4)  # Initially not visible
-        background_music = gr.Audio(label="Background Music", autoplay=True, visible=False)  # Initially not visible
+        play_button = gr.Button("Play Music", visible=False, elem_classes=["generate-button"], scale=1)  # Initially not visible
+        background_music = gr.Audio(label="Background Music", autoplay=True, visible=False, scale=4)  # Initially not visible
+
+    with gr.Row():
+        save_pdf_button = gr.Button("Save as PDF")
+        pdf_link = gr.File(label="Download PDF", visible=False)
 
     def on_generate_click(*args):
         recipe, show_play_button = generate_cocktail(*args)
         return recipe, gr.update(visible=show_play_button)
 
+    def save_as_pdf(html_content):
+        # Define path for temporary HTML and PDF files
+        html_path = "output_recipe.html"
+        pdf_path = "output_recipe.pdf"
+        
+        # Write the HTML content to a temporary HTML file
+        with open(html_path, 'w') as f:
+            f.write(html_content)
+        
+        # Convert HTML to PDF
+        pdfkit.from_file(html_path, pdf_path)
+        
+        # Provide a link for the generated PDF
+        return pdf_path
+    
     def reset():
         return "", 0, 0, 0, 0, [], [], 10, "", "", "", gr.update(visible=False), gr.update(visible=False)
         
@@ -120,6 +139,8 @@ with gr.Blocks(css=css_styles) as demo:
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
 
+    save_pdf_button.click(fn=save_as_pdf, inputs=output_recipe, outputs=pdf_link)
+    
     clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music])
         
 if __name__ == "__main__":
