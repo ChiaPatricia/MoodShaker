@@ -6,7 +6,7 @@ from datetime import datetime
 import openai
 import pdfkit
 import random
-
+import base64
 
 music_files = [
     "RPReplay_Final1712757356.mp3",
@@ -82,6 +82,28 @@ def format_cocktail_output(name, quote, ingredients, instruction, notes):
     '''
     return html_output
 
+def save_as_pdf(html_content):
+    """Converts HTML content to PDF, encodes it in base64, and returns a download link."""
+    html_path = "output_recipe.html"
+    pdf_path = "output_recipe.pdf"
+    
+    # Write the HTML content to a temporary file
+    with open(html_path, 'w') as f:
+        f.write(html_content)
+    
+    # Convert HTML to PDF
+    pdfkit.from_file(html_path, pdf_path)
+    
+    # Encode the PDF file in base64
+    with open(pdf_path, "rb") as pdf_file:
+        encoded_pdf = base64.b64encode(pdf_file.read()).decode("utf-8")
+    
+    # Create a Data URL for the PDF
+    pdf_data_url = f"data:application/pdf;base64,{encoded_pdf}"
+    
+    # Return HTML anchor tag for the download link
+    return f'<a href="{pdf_data_url}" download="CocktailRecipe.pdf" style="color: white; font-size: 20px;">Download PDF</a>'
+        
 with open('style.css', 'r') as file:
     css_styles = file.read()
 
@@ -117,26 +139,15 @@ with gr.Blocks(css=css_styles) as demo:
 
     play_button = gr.Button("Play Music", visible=False, elem_classes=["generate-button"], scale=1)  # Initially not visible
     background_music = gr.Audio(label="Background Music", autoplay=True, visible=False, scale=4)  # Initially not visible
+    pdf_download_link = gr.HTML(visible=False)  # For displaying the PDF download link
 
     with gr.Row():
-        save_pdf_button = gr.Button("Download Recipe", visible=False)
+        save_pdf_button = gr.Button("Download Recipe as PDF", visible=False)
 
     def on_generate_click(*args):
         recipe, show_play_button, show_save_button = generate_cocktail(*args)
         return recipe, gr.update(visible=show_play_button), gr.update(visible=show_save_button)
 
-    def save_as_pdf(html_content):
-        # Define path for temporary HTML and PDF files
-        html_path = "output_recipe.html"
-        pdf_path = "output_recipe.pdf"
-        
-        # Write the HTML content to a temporary HTML file
-        with open(html_path, 'w') as f:
-            f.write(html_content)
-
-        # Convert HTML to PDF
-        pdfkit.from_file(html_path, pdf_path)
-        
     def reset():
         return "", 0, 0, 0, 0, [], [], 10, "", "", "", gr.update(visible=False), gr.update(visible=False), gr.update(visible=False)
         
@@ -148,7 +159,7 @@ with gr.Blocks(css=css_styles) as demo:
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
 
-    save_pdf_button.click(fn=save_as_pdf, inputs=[output_recipe], outputs=[])
+    save_pdf_button.click(fn=save_as_pdf, inputs=[output_recipe], outputs=[pdf_download_link])
     
     clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music, save_pdf_button])
         
