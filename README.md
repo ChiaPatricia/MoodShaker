@@ -31,6 +31,7 @@ MoodShaker leverages advanced AI algorithms to suggest cocktail recipes that ali
 ## 🛠 Built With
 - **Hugging Face Spaces** - For hosting the AI application.
 - **Gradio** - For creating the interactive web interface.
+- **Soundraw** - For generating the background music. 
 
 ## 📖 How to Use
 To start your personalized cocktail discovery journey with MoodShaker, simply visit our app and follow these steps:
