@@ -182,7 +182,7 @@ with gr.Blocks(css=css_styles) as MoodShaker:
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
 
-    save_pdf_button.click(fn=generate_pdf_from_html, inputs=[output_recipe], outputs=[pdf_download_link, pdf_download_link])
+    # save_pdf_button.click(fn=generate_pdf_from_html, inputs=[output_recipe], outputs=[pdf_download_link, pdf_download_link])
     
     clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music, save_pdf_button])
         
