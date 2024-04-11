@@ -5,8 +5,7 @@ import re
 from datetime import datetime
 import openai
 import random
-# from pyppeteer import launch
-# import tempfile
+from html2image import Html2Image
 
 user_db = { 
            os.environ["username"]: os.environ["password"],
@@ -86,47 +85,14 @@ def format_cocktail_output(name, quote, ingredients, instruction, notes):
     '''
     return html_output
 
-# def save_as_pdf(html_content):
-#     """Converts HTML content to PDF, encodes it in base64, and returns a download link."""
-#     html_path = "output_recipe.html"
-#     pdf_path = "output_recipe.pdf"
-    
-#     # Write the HTML content to a temporary file
-#     with open(html_path, 'w') as f:
-#         f.write(html_content)
-    
-#     # Convert HTML to PDF
-#     pdfkit.from_file(html_path, pdf_path)
-    
-#     # Encode the PDF file in base64
-#     with open(pdf_path, "rb") as pdf_file:
-#         encoded_pdf = base64.b64encode(pdf_file.read()).decode("utf-8")
-    
-#     # Create a Data URL for the PDF
-#     pdf_data_url = f"data:application/pdf;base64,{encoded_pdf}"
-    
-#     # Return HTML anchor tag for the download link
-#     return f'<a href="{pdf_data_url}" download="CocktailRecipe.pdf" style="color: white; font-size: 20px;">Download PDF</a>'
+def save_as_png(html_content):
+    """Converts HTML content to PDF, encodes it in base64, and returns a download link."""
+    hti = Html2Image()
+    css = 'body {background: url("https://images.unsplash.com/photo-1514361726087-38371321b5cd?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");}'
 
-# def generate_pdf_from_html(html_content):
-#     browser = launch()
-#     page = browser.newPage()
-    
-#     page.setContent(html_content)
-    
-#     # Create a temporary file to save the PDF
-#     with tempfile.NamedTemporaryFile(suffix='.pdf', delete=False) as tmp_file:
-#         pdf_path = tmp_file.name
-    
-#         page.pdf({'path': pdf_path, 'format': 'A4'})
-    
-#     # Close browser
-#     browser.close()
-    
-#     # Generate URL for the temporary PDF file
-#     pdf_url = f'file://{pdf_path}'
-    
-#     return pdf_url, True
+    # screenshot an HTML string (css is optional)
+    hti.screenshot(html_str=html_content, css_str=css, save_as="CocktailRecipe.png")
+    return 'CocktailRecipe.png'
         
 with open('style.css', 'r') as file:
     css_styles = file.read()
@@ -164,9 +130,9 @@ with gr.Blocks(css=css_styles) as MoodShaker:
     play_button = gr.Button("Play Music", visible=False, elem_classes=["generate-button"], scale=1)  # Initially not visible
     background_music = gr.Audio(label="Background Music", autoplay=True, visible=False, scale=4)  # Initially not visible
 
-    # with gr.Row():
-    #     save_pdf_button = gr.Button("Download Recipe as PDF", visible=False)
-    #     pdf_download_link = gr.File(label="Download Link", visible=False)  # For displaying the PDF download link
+    with gr.Row():
+        save_pdf_button = gr.Button("Download Recipe as PNG", visible=False)
+        pdf_download_link = gr.File(label="Download Link", visible=False)  # For displaying the PDF download link
 
     def on_generate_click(*args):
         recipe, show_play_button = generate_cocktail(*args)
@@ -183,7 +149,7 @@ with gr.Blocks(css=css_styles) as MoodShaker:
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
 
-    # save_pdf_button.click(fn=generate_pdf_from_html, inputs=[output_recipe], outputs=[pdf_download_link, pdf_download_link])
+    save_pdf_button.click(fn=save_as_png, inputs=[output_recipe], outputs=[output_path])
     
     clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music])
         
