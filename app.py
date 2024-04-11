@@ -132,7 +132,7 @@ with gr.Blocks(css=css_styles) as MoodShaker:
     pdf_download_link = gr.HTML(visible=False)  # For displaying the PDF download link
 
     with gr.Row():
-        save_pdf_button = gr.Button("Download Recipe as PNG", visible=False)
+        save_png_button = gr.Button("Download Recipe as PNG", visible=False)
 
     def on_generate_click(*args):
         recipe, show_play_button = generate_cocktail(*args)
@@ -144,12 +144,12 @@ with gr.Blocks(css=css_styles) as MoodShaker:
     generate_button.click(
         fn=on_generate_click,
         inputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests],
-        outputs=[output_recipe, play_button]
+        outputs=[output_recipe, play_button, save_png_button]
     )
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
 
-    save_pdf_button.click(fn=save_as_png, inputs=[output_recipe], outputs=[pdf_download_link])
+    save_png_button.click(fn=save_as_png, inputs=[output_recipe], outputs=[pdf_download_link])
     
     clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music])
         
