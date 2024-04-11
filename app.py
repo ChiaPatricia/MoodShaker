@@ -135,11 +135,11 @@ with gr.Blocks(css=css_styles) as MoodShaker:
         save_png_button = gr.Button("Download Recipe as PNG", visible=False)
 
     def on_generate_click(*args):
-        recipe, show_play_button = generate_cocktail(*args)
-        return recipe, gr.update(visible=show_play_button)
+        recipe, show_play_button, show_save_button = generate_cocktail(*args)
+        return recipe, gr.update(visible=show_play_button), gr.update(visible=show_save_button)
 
     def reset():
-        return "", 0, 0, 0, 0, [], [], 10, "", "", "", gr.update(visible=False), gr.update(visible=False)
+        return "", 0, 0, 0, 0, [], [], 10, "", "", "", gr.update(visible=False), gr.update(visible=False), gr.update(visible=False)
         
     generate_button.click(
         fn=on_generate_click,
@@ -151,7 +151,7 @@ with gr.Blocks(css=css_styles) as MoodShaker:
 
     save_png_button.click(fn=save_as_png, inputs=[output_recipe], outputs=[pdf_download_link])
     
-    clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music])
+    clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music, save_pdf_button])
         
 if __name__ == "__main__":
     MoodShaker.launch(#enable_queue=False,
