@@ -151,7 +151,7 @@ with gr.Blocks(css=css_styles) as MoodShaker:
 
     save_png_button.click(fn=save_as_png, inputs=[output_recipe], outputs=[pdf_download_link])
     
-    clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music, save_pdf_button])
+    clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music, save_png_button])
         
 if __name__ == "__main__":
     MoodShaker.launch(#enable_queue=False,
