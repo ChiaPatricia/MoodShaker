@@ -47,7 +47,7 @@ def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association,
             messages=messages,
             max_tokens=1024)
         name, quote, ingredients, instruction, notes = extract_info(response.choices[0].message.content)
-        return format_cocktail_output(name, quote, ingredients, instruction, notes), True
+        return format_cocktail_output(name, quote, ingredients, instruction, notes), True, True
     except Exception as e:
         return f'<p style="color: white; font-size: 20px;">{str(e)}</p>'
 
