@@ -95,25 +95,22 @@ with gr.Blocks(css=css_styles) as demo:
     with gr.Row():
         allergies = gr.Textbox(label="Allergies", scale=2, elem_classes=["custom-input1"])
         additional_requests = gr.Textbox(label="Anything else you would like to address", scale=2, elem_classes=["custom-input2"])
-        generate_button = gr.Button("Generate Your Cocktail Recipe", scale=1, elem_classes=["generate-button"])
+        generate_button = gr.Button("Generate Your Cocktail Recipe", scale=0.75, elem_classes=["generate-button"])
+        clear_button = gr.Button("Clear", scale=0.25)
 
     with gr.Row():
         output_recipe = gr.HTML(label="Your Cocktail Recipe")
 
-    output_recipe = gr.HTML(label="Your Cocktail Recipe")
-
     with gr.Row():
         play_button = gr.Button("Play Music", visible=False, elem_classes=["generate-button"], scale=4)  # Initially not visible
-        clear_button = gr.Button("Clear", scale=1)
-    
-    background_music = gr.Audio(label="Background Music", autoplay=True, visible=False)  # Initially not visible
+        background_music = gr.Audio(label="Background Music", autoplay=True, visible=False)  # Initially not visible
 
     def on_generate_click(*args):
         recipe, show_play_button = generate_cocktail(*args)
         return recipe, gr.update(visible=show_play_button)
 
     def reset():
-        return "", 0, 0, 0, 0, [], [], 10, "", ""
+        return "", 0, 0, 0, 0, [], [], 10, "", "", "", gr.update(visible=False), gr.update(visible=False)
         
     generate_button.click(
         fn=on_generate_click,
@@ -123,7 +120,7 @@ with gr.Blocks(css=css_styles) as demo:
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
 
-    clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests])
+    clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests], output_recipe, play_button, background_music)
         
 if __name__ == "__main__":
     demo.launch(#enable_queue=False,
