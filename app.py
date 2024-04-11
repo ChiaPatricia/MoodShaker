@@ -92,7 +92,7 @@ def save_as_png(html_content):
 
     # screenshot an HTML string (css is optional)
     hti.screenshot(html_str=html_content, css_str=css, save_as="CocktailRecipe.png")
-    return 'CocktailRecipe.png'
+
         
 with open('style.css', 'r') as file:
     css_styles = file.read()
@@ -149,7 +149,7 @@ with gr.Blocks(css=css_styles) as MoodShaker:
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
 
-    save_pdf_button.click(fn=save_as_png, inputs=[output_recipe], outputs=[output_path])
+    save_pdf_button.click(fn=save_as_png, inputs=[output_recipe], outputs=[])
     
     clear_button.click(fn=reset, inputs=[], outputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests, output_recipe, play_button, background_music])
         
