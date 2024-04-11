@@ -168,7 +168,7 @@ with gr.Blocks(css=css_styles) as MoodShaker:
     #     pdf_download_link = gr.File(label="Download Link", visible=False)  # For displaying the PDF download link
 
     def on_generate_click(*args):
-        recipe, show_play_button, show_save_button = generate_cocktail(*args)
+        recipe, show_play_button = generate_cocktail(*args)
         return recipe, gr.update(visible=show_play_button), gr.update(visible=show_save_button)
 
     def reset():
