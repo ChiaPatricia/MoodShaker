@@ -4,6 +4,7 @@ import json
 import re
 from datetime import datetime
 import openai
+import random
 # from pyppeteer import launch
 # import tempfile
 
