@@ -47,7 +47,7 @@ def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association,
             messages=messages,
             max_tokens=1024)
         name, quote, ingredients, instruction, notes = extract_info(response.choices[0].message.content)
-        return format_cocktail_output(name, quote, ingredients, instruction, notes), True, True
+        return format_cocktail_output(name, quote, ingredients, instruction, notes), True
     except Exception as e:
         return f'<p style="color: white; font-size: 20px;">{str(e)}</p>'
 
@@ -177,7 +177,7 @@ with gr.Blocks(css=css_styles) as MoodShaker:
     generate_button.click(
         fn=on_generate_click,
         inputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests],
-        outputs=[output_recipe, play_button, save_pdf_button]
+        outputs=[output_recipe, play_button]
     )
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
