@@ -169,7 +169,7 @@ with gr.Blocks(css=css_styles) as MoodShaker:
 
     def on_generate_click(*args):
         recipe, show_play_button = generate_cocktail(*args)
-        return recipe, gr.update(visible=show_play_button), gr.update(visible=show_save_button)
+        return recipe, gr.update(visible=show_play_button)
 
     def reset():
         return "", 0, 0, 0, 0, [], [], 10, "", "", "", gr.update(visible=False), gr.update(visible=False)
@@ -189,6 +189,7 @@ with gr.Blocks(css=css_styles) as MoodShaker:
 if __name__ == "__main__":
     MoodShaker.launch(#enable_queue=False,
         # Creates an auth screen 
+        cache_examples=True,
         auth=lambda u, p: user_db.get(u) == p,
         auth_message="Welcome to MoodShaker! Enter a Username and Password"
                ).queue()
