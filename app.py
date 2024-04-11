@@ -4,6 +4,7 @@ import json
 import re
 from datetime import datetime
 import openai
+import pdfkit
 
 # Function to play background music
 def play_music():
@@ -30,7 +31,7 @@ def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association,
             messages=messages,
             max_tokens=1024)
         name, quote, ingredients, instruction, notes = extract_info(response.choices[0].message.content)
-        return format_cocktail_output(name, quote, ingredients, instruction, notes), True
+        return format_cocktail_output(name, quote, ingredients, instruction, notes), True, True
     except Exception as e:
         return f'<p style="color: white; font-size: 20px;">{str(e)}</p>'
 
@@ -93,10 +94,10 @@ with gr.Blocks(css=css_styles) as demo:
         soberness_level = gr.Slider(label="Level of Soberness", minimum=0, maximum=10, value=10, elem_id="slider-soberness_level", elem_classes=["slider-soberness_level"])
 
     with gr.Row():
-        allergies = gr.Textbox(label="Allergies", scale=2, elem_classes=["custom-input1"])
-        additional_requests = gr.Textbox(label="Anything else you would like to address", scale=2, elem_classes=["custom-input2"])
-        generate_button = gr.Button("Generate Your Cocktail Recipe", scale=0.85, elem_classes=["generate-button"])
-        clear_button = gr.Button("Clear", scale=0.15)
+        allergies = gr.Textbox(label="Allergies", scale=6, elem_classes=["custom-input1"])
+        additional_requests = gr.Textbox(label="Anything else you would like to address", scale=6, elem_classes=["custom-input2"])
+        generate_button = gr.Button("Generate Your Cocktail Recipe", scale=3, elem_classes=["generate-button"])
+        clear_button = gr.Button("Clear", scale=1)
 
     with gr.Row():
         output_recipe = gr.HTML(label="Your Cocktail Recipe")
@@ -106,12 +107,12 @@ with gr.Blocks(css=css_styles) as demo:
         background_music = gr.Audio(label="Background Music", autoplay=True, visible=False, scale=4)  # Initially not visible
 
     with gr.Row():
-        save_pdf_button = gr.Button("Save as PDF")
+        save_pdf_button = gr.Button("Download Recipe", visible=False)
         pdf_link = gr.File(label="Download PDF", visible=False)
 
     def on_generate_click(*args):
-        recipe, show_play_button = generate_cocktail(*args)
-        return recipe, gr.update(visible=show_play_button)
+        recipe, show_play_button, show_save_button = generate_cocktail(*args)
+        return recipe, gr.update(visible=show_play_button), gr.update(visible=show_save_button)
 
     def save_as_pdf(html_content):
         # Define path for temporary HTML and PDF files
@@ -134,7 +135,7 @@ with gr.Blocks(css=css_styles) as demo:
     generate_button.click(
         fn=on_generate_click,
         inputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests],
-        outputs=[output_recipe, play_button]
+        outputs=[output_recipe, play_button, save_pdf_button]
     )
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
