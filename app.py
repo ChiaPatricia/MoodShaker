@@ -146,6 +146,13 @@ with gr.Blocks(css=css_styles) as MoodShaker:
         inputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests],
         outputs=[output_recipe, play_button, save_png_button]
     )
+
+    with gr.Row():
+        gr.Examples(examples=[["Celebratory", 7, 3, 1, 2, ["Fruity", "Floral"], ["Energizing"], 5, "Nuts", "No ice"],
+                              ["Relaxed", 4, 6, 0, 5, ["Herbal", "Woody"], ["Comforting"], 2, "", "Extra mint"],
+                              ["Adventurous", 5, 5, 5, 0, ["Spicy", "Earthy"], ["Refreshing"], 8, "Shellfish", "Make it a double"]], 
+                    inputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests], 
+                    outputs=[output_recipe, play_button], fn=on_generate_click)
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
 
@@ -157,5 +164,5 @@ if __name__ == "__main__":
     MoodShaker.launch(#enable_queue=False,
         # Creates an auth screen 
         auth=lambda u, p: user_db.get(u) == p,
-        auth_message="Welcome to MoodShaker! Enter a Username and Password"
+        auth_message="Welcome to MoodShaker! \nEnter a Username and Password"
                ).queue()
