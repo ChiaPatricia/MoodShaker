@@ -5,12 +5,25 @@ import re
 from datetime import datetime
 import openai
 import pdfkit
+import random
+
+
+music_files = [
+    "RPReplay_Final1712757356.mp3",
+    "RPReplay_Final1712801927.mp3",
+    "RPReplay_Final1712802362.mp3",
+    "RPReplay_Final1712802406.mp3",
+    "RPReplay_Final1712757356.mp3",
+    "RPReplay_Final1712802448.mp3",
+    "RPReplay_Final1712802599.mp3"
+]
 
 # Function to play background music
 def play_music():
     """Returns the path to the music file and makes the audio player visible."""
-    music_path = "RPReplay_Final1712757356.mp3"
+    music_path = random.choice(music_files)
     return music_path, gr.update(visible=True)
+
 
 # Main function to generate a cocktail recipe based on user preferences
 def generate_cocktail(mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests):
