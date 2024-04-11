@@ -30,16 +30,18 @@ MoodShaker leverages advanced AI algorithms to suggest cocktail recipes that ali
 
 ## 🛠 Built With
 - **Hugging Face Spaces** - For hosting the AI application.
+- **OpenAI API** - gpt4-preview-0125, For backend AI engine.
 - **Gradio** - For creating the interactive web interface.
 - **Soundraw** - For generating the background music. 
 
 ## 📖 How to Use
 To start your personalized cocktail discovery journey with MoodShaker, simply visit our app and follow these steps:
 
-1. Visit the MoodShaker space on Hugging Face.
-2. Fill in the interactive form with your mood, taste preferences, and other details.
-3. Submit your input and let our AI work its magic.
-4. Receive a personalized cocktail recipe and a music recommendation.that's been crafted just for you, complete with a music recommendation to enhance the experience.
+1. Visit the MoodShaker space on Hugging Face: https://huggingface.co/spaces/WhartonHackAIthon/MoodShaker.
+2. Login with username and password.
+3. Fill in the interactive form with your mood, taste preferences, and other details.
+4. Submit your input and let our AI work its magic.
+5. Receive a personalized cocktail recipe that's been crafted just for you complemented with a music recommendation to enhance the experience.
 
 ## 🎶 The MoodShaker Experience
 MoodShaker is more than just a cocktail app; it's an experience. By integrating music with each cocktail recommendation, we aim to create an atmosphere that complements your drink perfectly. Whether it's a refreshing summer cocktail paired with upbeat tunes or a cozy winter drink accompanied by soothing melodies, MoodShaker ensures that your cocktail moment is unforgettable.
