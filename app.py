@@ -189,7 +189,6 @@ with gr.Blocks(css=css_styles) as MoodShaker:
 if __name__ == "__main__":
     MoodShaker.launch(#enable_queue=False,
         # Creates an auth screen 
-        cache_examples=True,
         auth=lambda u, p: user_db.get(u) == p,
         auth_message="Welcome to MoodShaker! Enter a Username and Password"
                ).queue()
