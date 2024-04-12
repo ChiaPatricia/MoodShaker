@@ -44,7 +44,7 @@ To start your personalized cocktail discovery journey with MoodShaker, simply vi
 5. Receive a personalized cocktail recipe that's been crafted just for you complemented with a music recommendation to enhance the experience.
    
 ## Demo
-[![DEMO](https://www.youtube.com/watch?v=U5Ti2dYMHfg/0.jpg)]([https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE](https://www.youtube.com/watch?v=U5Ti2dYMHfg))
+[![DEMO](https://www.youtube.com/watch?v=U5Ti2dYMHfg/)]([https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE](https://www.youtube.com/watch?v=U5Ti2dYMHfg))
 
 ## 🎶 The MoodShaker Experience
 MoodShaker is more than just a cocktail app; it's an experience. By integrating music with each cocktail recommendation, we aim to create an atmosphere that complements your drink perfectly. Whether it's a refreshing summer cocktail paired with upbeat tunes or a cozy winter drink accompanied by soothing melodies, MoodShaker ensures that your cocktail moment is unforgettable.
