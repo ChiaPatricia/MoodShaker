@@ -98,7 +98,7 @@ with open('style.css', 'r') as file:
     css_styles = file.read()
 
 # Creating the Gradio interface
-with gr.Blocks(css=css_styles, theme='xiaobaiyuan/theme_brief') as MoodShaker:
+with gr.Blocks(css=css_styles, theme='xiaobaiyuan/theme_brief@=0.0.2') as MoodShaker:
     with gr.Row():
         gr.HTML('''
         <div style="text-align: center; margin: 0;">
