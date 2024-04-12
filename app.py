@@ -152,7 +152,7 @@ with gr.Blocks(css=css_styles) as MoodShaker:
                               ["Relaxed", 4, 6, 0, 5, ["Herbal", "Woody"], ["Comforting"], 2, "", "Extra mint"],
                               ["Adventurous", 5, 5, 5, 0, ["Spicy", "Earthy"], ["Refreshing"], 8, "Shellfish", "Make it a double"]], 
                     inputs=[mood, sweetness, sour, savory, bitter, flavor_association, drinking_experience, soberness_level, allergies, additional_requests], 
-                    outputs=[output_recipe, play_button], fn=on_generate_click)
+                    outputs=[output_recipe, play_button], fn=on_generate_click, elem_id="example-box")
     
     play_button.click(fn=play_music, inputs=[], outputs=[background_music, background_music])
 
