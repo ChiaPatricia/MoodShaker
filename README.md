@@ -45,7 +45,7 @@ To start your personalized cocktail discovery journey with MoodShaker, simply vi
    
 ## Demo
 
-[![MoodShaker Demo Video](https://youtu.be/U5Ti2dYMHfg/0.jpg)](https://www.youtube.com/watch?v=U5Ti2dYMHfg)
+[![MoodShaker Demo Video](https://img.youtube.com/vi/U5Ti2dYMHfg/0.jpg)](https://www.youtube.com/watch?v=U5Ti2dYMHfg)
 
 
 ## 🎶 The MoodShaker Experience
